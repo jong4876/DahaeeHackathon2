@@ -1,0 +1,22 @@
+{
+  "name": "dahaee_hackathon2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jong4876/Dahaee_Hackathon2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jong4876/Dahaee_Hackathon2/issues"
+  },
+  "homepage": "https://github.com/jong4876/Dahaee_Hackathon2#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
