@@ -2,14 +2,12 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
-
-app.set('views', __dirname);
+app.set('views', __dirname + '/view');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html'); //default엔진을 html로
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-app.use(express.static('dist')); // 정적인 이미지 저장공간 접근 허용 images폴더
 app.use(express.static('public'));
 
 
@@ -36,9 +34,12 @@ app.get('/', function(req, res) {
     }
   });
 })
+app.get('/index', function(req, res) {
+  res.render('index.html');
+})
 
 
-app.get('/test', function(req, res) {
+app.get('/index2', function(req, res) {
   res.render('index2.html');
 })
 
