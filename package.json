@@ -17,10 +17,12 @@
   },
   "homepage": "https://github.com/jong4876/Dahaee_Hackathon2#readme",
   "dependencies": {
+    "admin-lte": "^2.4.8",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "mysql": "^2.16.0",
+    "npm": "^6.5.0",
     "path": "^0.12.7"
   }
 }
