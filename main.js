@@ -34,6 +34,11 @@ app.get('/', function(req, res) {
     }
   });
 })
+
+app.get('/starter', function(req, res) {
+  res.render('starter.html');
+})
+
 app.get('/index', function(req, res) {
   res.render('index.html');
 })
