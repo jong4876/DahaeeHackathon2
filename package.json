@@ -19,6 +19,7 @@
   "dependencies": {
     "admin-lte": "^2.4.8",
     "body-parser": "^1.18.3",
+    "deasync": "^0.1.14",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "mysql": "^2.16.0",
