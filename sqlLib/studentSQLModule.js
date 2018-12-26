@@ -20,7 +20,6 @@ module.exports.getInfoByID = function(ID) {
       console.log(err);
       return 'Internal Server Err';
     } else {
-      console.log(results + "???");
       results = result;
     }
   });
