@@ -37,9 +37,11 @@ app.get('/test', function(req, res) {
 })
 
 app.get('/', function(req, res) {
-  var studentInfo = studentSQLModule.getInfo(conn);
-  res.render('starter.html', {
-    studentInfo: studentInfo
+  var scoreInfo = scoreSQLModule.getNot100Info(conn,1,1);
+  console.log(scoreInfo);
+  
+  res.render('starter.ejs', {
+    scoreInfo: scoreInfo
   });
 })
 
