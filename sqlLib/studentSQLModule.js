@@ -64,9 +64,8 @@ module.exports.getInfoUp20per = function(conn) { // 상위 20퍼의 학생 추�
       console.log(err);
       return 'Internal Server Err';
     } else {
-      sql = 'select year, count(year) from (select * from student order by SWContest17 DESC LIMIT ?) as sub group by year';
-      var intCount = 5;
-      console.log('intCount : ' +intCount);
+      sql = 'select year, count(year) as count from (select * from student order by SWContest17 DESC LIMIT ?) as sub group by year';
+      var intCount = 9;
       conn.query(sql,intCount, function(err, result, fields) {
         if (err) {
           console.log(err);
