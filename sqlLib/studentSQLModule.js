@@ -37,24 +37,6 @@ module.exports.getSWYearInfo = function(conn, Year) { // 17 or 18년도 대회 �
   return results;
 }
 
-module.exports.getSW17Info = function(conn) { // 17년도 SW대회
-  var sql = 'select * from student order by SWContest17 desc';
-  var jsonTotalArray = new Array();
-  var results = new Object();
-  conn.query(sql, function(err, result, fields) {
-    if (err) {
-      console.log(err);
-      return 'Internal Server Err';
-    } else {
-      results = result;
-    }
-  });
-  while (!errorHandlingModule.isObjectData(results)) {
-    deasync.sleep(200);
-  }
-  return results;
-}
-
 
 module.exports.getInfoUp20per = function(conn) { // 상위 20퍼의 학생 추출
   var sql = 'SELECT count(*) as count FROM student';

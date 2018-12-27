@@ -18,8 +18,9 @@ module.exports.getInfo = function(conn, contestID) {
   return results;
 }
 
-module.exports.get100Count = function(conn) { //  ContestID, ProblemNum 백점인 사람 수
-  var sql = 'select ProblemNum, count(*) as count from score group by ProblemNum';
+
+module.exports.get100Count = function(conn, ContestID, ProblemNum) { //  ContestID, ProblemNum 백점인 사람 수
+  var sql = 'select ProblemNum, count(*) as cnt from score group by ProblemNum';
   var results = new Object();
   conn.query(sql, function(err, result, fields) {
     if (err) {

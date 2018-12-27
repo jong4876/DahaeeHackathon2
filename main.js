@@ -80,26 +80,29 @@ app.get('/gradeChart', function(req, res) {
 
   for(var i=0; i<Object.keys(studentInfoUp20per).length; i++)
     data[i] = studentInfoUp20per[i].year + ","+ studentInfoUp20per[i].count;
-  console.log(data);
+
   res.send(data);
 })
 
 app.get('/majorChart', function(req, res) {
-  var mod = 100;
-  var score = new Array();
-  for(var i = 0; i<8; i++)
-    score[i] = parseInt(Math.random() * mod);
+  var studentAVGInfo = studentSQLModule.getAVGInfo(conn);
+  var data = new Array();
 
-  res.send(score);
+  for(var i=0; i<Object.keys(studentAVGInfo).length; i++)
+    data[i] = studentAVGInfo[i].Major + ","+ studentAVGInfo[i].AVG;
+
+  res.send(data);
 })
 
 app.get('/problemChart', function(req, res) {
-  var mod = 100;
-  var score = new Array();
-  for(var i = 0; i<8; i++)
-    score[i] = parseInt(Math.random() * mod);
+  var scoreNot100Count = scoreSQLModule.getNot100Count(conn);  // 100점 사람  4번
+  var score100Count = scoreSQLModule.get100Count(conn);
 
-  res.send(score);
+  var data = new Array();
+  for(var i=0; i<score100Count.length; i++)
+    data[i] = score100Count[i].cnt + "," + scoreNot100Count[i].cnt;
+
+  res.send(data);
 })
 
 app.get('/select', function(req, res) {
@@ -109,6 +112,6 @@ app.get('/select', function(req, res) {
   res.render('select.ejs', {score100Info: score100Info, scoreNot100Info: scoreNot100Info});
 })
 
-app.listen(3000, function() {
-  console.log('Connected, 3000port!!');
+app.listen(3001, function() {
+  console.log('Connected, 3001port!!');
 });

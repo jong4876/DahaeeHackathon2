@@ -20,7 +20,7 @@ function pieChart (data) {
       dataYear[i] = dataYear[i]*1;
       dataCount[i] = dataCount[i]*1;
     }
-    console.log(dataYear + dataCount)
+    
     var PieData        = [
       {
         value    : dataCount[0],
