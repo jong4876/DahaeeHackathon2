@@ -10,7 +10,9 @@ var classSQLModule = require('./sqlLib/classSQLModule.js');
 app.set('views', __dirname + '/view');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html'); //default엔진을 html로
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(express.static('public'));
 
 
@@ -27,7 +29,9 @@ app.get('/', function(req, res) {
 
 app.get('/', function(req, res) {
   var studentInfo = studentSQLModule.getInfo();
- res.render('starter.html',{studentInfo: studentInfo});
+  res.render('starter.html', {
+    studentInfo: studentInfo
+  });
 })
 
 app.get('/index', function(req, res) {
