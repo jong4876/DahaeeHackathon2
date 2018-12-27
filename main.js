@@ -17,9 +17,8 @@ app.use(express.static('public'));
 
 app.get('/', function(req, res) {
   var id = '14011003';
-  //var studentInfo = studentSQLModule.getInfo();
+  var studentInfo = studentSQLModule.getInfo();
   var profSQLInfo = profSQLModule.getProfInfo();
-
 
 
   res.send(profSQLInfo);
