@@ -2,19 +2,8 @@ var mysql = require('mysql');
 var deasync = require('deasync');
 var errorHandlingModule = require('../errorHandlingModule.js');
 
-var conn = mysql.createConnection({
-  host: 'www5.dynu.net',
-  port: '43306',
-  user: 'myadmin',
-  //user: 'debian-sys-maint',
-  password: 'myadmin',
-  //password: 'HoF7vJTdGAyfMvIc',
-  database: 'hackathondb'
-});
-conn.connect();
 
-module.exports.getInfo = function() {
-  console.log("???");
+module.exports.getInfo = function(conn) {
   var sql = 'select * from professor order by ID';
   var results = new Object();
   conn.query(sql, function(err, result, fields) {

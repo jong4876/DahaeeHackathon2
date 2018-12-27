@@ -5,7 +5,7 @@ var mysql = require('mysql');
 var studentSQLModule = require('./sqlLib/studentSQLModule.js');
 var profSQLModule = require('./sqlLib/profSQLModule.js');
 var classSQLModule = require('./sqlLib/classSQLModule.js');
-
+var mysql = require('mysql');
 
 app.set('views', __dirname + '/view');
 app.engine('html', require('ejs').renderFile);
@@ -15,18 +15,25 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static('public'));
 
-
+var conn = mysql.createConnection({
+  host: '13.125.192.103',
+  port: '3306',
+  user: 'test',
+  password: '111111',
+  database: 'hackathondb'
+});
+conn.connect();
 
 app.get('/test', function(req, res) {
 
-  var profInfo = profSQLModule.getInfo();
-  var studentInfo = studentSQLModule.getInfo();
-  var classInfo = studentSQLModule.getInfo();
+  var profInfo = profSQLModule.getInfo(conn);
+  var studentInfo = studentSQLModule.getInfo(conn);
+  var classInfo = studentSQLModule.getInfo(conn);
   res.send(studentInfo);
 })
 
 app.get('/', function(req, res) {
-  var studentInfo = studentSQLModule.getInfo();
+  var studentInfo = studentSQLModule.getInfo(conn);
   res.render('starter.html', {
     studentInfo: studentInfo
   });
