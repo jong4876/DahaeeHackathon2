@@ -39,20 +39,7 @@ app.get('/test', function(req, res) {
 })
 
 app.get('/', function(req, res) {
-  var studentInfo = studentSQLModule.getInfo(conn);
-
-  var data17 = [0, 0, 0, 0, 0, 0, 0, 0];
-  var data18 = [0, 0, 0, 0, 0, 0, 0, 0];
-
-  for(var i=0; i<Object.keys(studentInfo).length; i++) {
-    data17[parseInt(studentInfo[i].SWContest17*1 / 100)]++;
-    data18[parseInt(studentInfo[i].SWContest18*1 / 100)]++;
-  }
-
-  res.render('starter.ejs', {
-    data17: data17,
-    data18: data18
-  });
+  res.render('starter.ejs');
 })
 
 app.get('/header', function(req, res) {
@@ -76,12 +63,14 @@ app.get('/index2', function(req, res) {
 })
 
 app.get('/scoreChart', function(req, res) {
-  var mod = 100;
-  var score = new Array();
-  for(var i = 0; i<8; i++)
-    score[i] = parseInt(Math.random() * mod);
+  var studentInfo = studentSQLModule.getInfo(conn);
 
-  res.send(score);
+  var data = new Array();
+
+  for(var i=0; i<Object.keys(studentInfo).length; i++)
+    data[i] = studentInfo[i].SWContest17 + ","+ studentInfo[i].SWContest18;
+  
+  res.send(data);
 })
 
 app.get('/gradeChart', function(req, res) {

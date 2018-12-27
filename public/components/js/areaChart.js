@@ -1,9 +1,9 @@
-function areaChart (datas) {
+function areaChart (data) {
     /* ChartJS
      * -------
      * Here we will create a few charts using ChartJS
      */
-    var dataes = datas.match(/[0-9]{1,3}/g)
+    // var dataes = datas.match(/[0-9]{1,3}/g)
     //--------------
     //- AREA CHART -
     //--------------
@@ -12,28 +12,58 @@ function areaChart (datas) {
     // This will get the first returned node in the jQuery collection.
     var areaChart       = new Chart(areaChartCanvas)
 
+    var result17 = new Array();
+    var result18 = new Array();
+    var data17 = new Array();
+    var data18 = new Array();
+
+    var datas = JSON.parse(data);
+
+    for(var i=0; i<8; i++) {
+      result17[i] = 0;
+      result18[i] = 0;
+    }
+
+    for(var i=0; i<datas.length; i++) {
+      data17[i] = datas[i].split(",")[0];
+      data18[i] = datas[i].split(",")[1];
+    }
+
+    for(var i=0; i<datas.length; i++) {
+
+      var temp = data17[i]*1;
+      if(temp == 800)
+        temp -=1;
+      result17[parseInt(temp / 100)]++;
+
+      temp = data18[i]*1;
+      if(temp == 800)
+        temp -=1;
+      result18[parseInt(temp / 100)]++;
+    }
+
     var areaChartData = {
-      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels  : ['0~100', '100~200', '200~300', '300~400', '400~500', '500~600', '600~700', '700~800'],
       datasets: [
         {
-          label               : 'Electronics',
+          label               : 2017,
           fillColor           : 'rgba(210, 214, 222, 1)',
           strokeColor         : 'rgba(210, 214, 222, 1)',
           pointColor          : 'rgba(210, 214, 222, 1)',
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : dataes
+          data                : result17
         },
         {
-          label               : 'Digital Goods',
+          label               : '2018년',
           fillColor           : 'rgba(60,141,188,0.9)',
           strokeColor         : 'rgba(60,141,188,0.8)',
           pointColor          : '#3b8bba',
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : dataes
+          data                : result18
         }
       ]
     }

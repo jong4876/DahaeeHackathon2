@@ -724,7 +724,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       }
   })
   
-  var delay = 5000;
+  var delay = 10000;
   setInterval(function(){
     $.ajax({
       type : "get",
@@ -738,106 +738,80 @@ scratch. This page gets rid of all links and provides the needed markup only.
   })}, delay);
 </script>
 <script>
+  $.ajax({
+      type : "get",
+      //dataType: "json"
+      data: {'id':'admin'},
+      dataType : 'text',
+      url : "/majorChart",
+      success : function(data) {
+          lineChart(data);
+      }
+  })
+
+  var delay = 10000;
+  setInterval(function(){
     $.ajax({
-        type : "get",
-        //dataType: "json"
-        data: {'id':'admin'},
-        dataType : 'text',
-        url : "/scoreChart",
-        success : function(data) {
-            areaChart(data);
-        }
-    })
-    
-    var delay = 5000;
-    setInterval(function(){
-      $.ajax({
-        type : "get",
-        //dataType: "json"
-        data: {'id':'admin'},
-        dataType : 'text',
-        url : "/scoreChart",
-        success : function(data) {
-            areaChart(data);
-        }
+      type : "get",
+      //dataType: "json"
+      data: {'id':'admin'},
+      dataType : 'text',
+      url : "/majorChart",
+      success : function(data) {
+          lineChart(data);
+      }
+  })}, delay);
+</script>
+<script>
+  $.ajax({
+    type : "get",
+    //dataType: "json"
+    data: {'id':'admin'},
+    dataType : 'text',
+    url : "/gradeChart",
+    success : function(data) {
+      pieChart(data);
+    }
+  })
+  
+  var delay = 10000;
+  setInterval(function(){
+    $.ajax({
+    type : "get",
+    //dataType: "json"
+    data: {'id':'admin'},
+    dataType : 'text',
+    url : "/gradeChart",
+    success : function(data) {
+      pieChart(data);
+    }
+  })}, delay);
+</script>
+
+<script>
+  $.ajax({
+      type : "get",
+      //dataType: "json"
+      data: {'id':'admin'},
+      dataType : 'text',
+      url : "/problemChart",
+      success : function(data) {
+          barChart(data);
+      }
+  })
+  
+  var delay = 10000;
+  setInterval(function(){
+    $.ajax({
+      type : "get",
+      //dataType: "json"
+      data: {'id':'admin'},
+      dataType : 'text',
+      url : "/problemChart",
+      success : function(data) {
+        barChart(data);
+      }
     })}, delay);
   </script>
-
-  <script>
-      $.ajax({
-          type : "get",
-          //dataType: "json"
-          data: {'id':'admin'},
-          dataType : 'text',
-          url : "/majorChart",
-          success : function(data) {
-              lineChart(data);
-          }
-      })
-      
-      var delay = 5000;
-      setInterval(function(){
-        $.ajax({
-          type : "get",
-          //dataType: "json"
-          data: {'id':'admin'},
-          dataType : 'text',
-          url : "/majorChart",
-          success : function(data) {
-              lineChart(data);
-          }
-      })}, delay);
-    </script>
-    <script>
-        $.ajax({
-            type : "get",
-            //dataType: "json"
-            data: {'id':'admin'},
-            dataType : 'text',
-            url : "/gradeChart",
-            success : function(data) {
-              pieChart(data);
-            }
-        })
-        
-        var delay = 5000;
-        setInterval(function(){
-          $.ajax({
-            type : "get",
-            //dataType: "json"
-            data: {'id':'admin'},
-            dataType : 'text',
-            url : "/gradeChart",
-            success : function(data) {
-              pieChart(data);
-            }
-        })}, delay);
-      </script>
-
-      <script>
-          $.ajax({
-              type : "get",
-              //dataType: "json"
-              data: {'id':'admin'},
-              dataType : 'text',
-              url : "/problemChart",
-              success : function(data) {
-                  barChart(data);
-              }
-          })
-          
-          var delay = 5000;
-          setInterval(function(){
-            $.ajax({
-              type : "get",
-              //dataType: "json"
-              data: {'id':'admin'},
-              dataType : 'text',
-              url : "/problemChart",
-              success : function(data) {
-                barChart(data);
-              }
-          })}, delay);
-        </script>
 </body>
 </html>
