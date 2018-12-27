@@ -39,7 +39,12 @@ app.get('/test', function(req, res) {
 })
 
 app.get('/', function(req, res) {
-  res.render('starter.ejs');
+
+  var allRanking = studentSQLModule.getSWYearInfo(conn, 18);
+
+  console.log(allRanking);
+
+  res.render('starter.ejs', {allRanking : allRanking});
 })
 
 app.get('/header', function(req, res) {
@@ -112,6 +117,6 @@ app.get('/select', function(req, res) {
   res.render('select.ejs', {score100Info: score100Info, scoreNot100Info: scoreNot100Info});
 })
 
-app.listen(3001, function() {
+app.listen(3000, function() {
   console.log('Connected, 3001port!!');
 });

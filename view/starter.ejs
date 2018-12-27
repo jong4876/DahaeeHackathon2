@@ -181,76 +181,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>14011000</td>
-                    <td>이동욱</td>
-                    <td>컴퓨터공학과</td>
-                    <td>2</td>
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>14011001</td>
-                    <td>김태우</td>
-                    <td>컴퓨터공학과</td>
-                    <td>4</td>
-                    <td>800</td>
-                  </tr>
-                  <tr>
-                    <td>14011003</td>
-                    <td>안종희</td>
-                    <td>컴퓨터공학과</td>
-                    <td>3</td>
-                    <td>800</td>
-                  </tr>
-                  <tr>
-                    <td>14011019</td>
-                    <td>배경환</td>
-                    <td>컴퓨터공학과</td>
-                    <td>3</td>
-                    <td>600</td>
-                  </tr>
-                  <tr>
-                    <td>14011021</td>
-                    <td>박희준</td>
-                    <td>컴퓨터공학과</td>
-                    <td>3</td>
-                    <td>400</td>
-                  </tr>
-                  <tr>
-                    <td>14011022</td>
-                    <td>김오성</td>
-                    <td>컴퓨터공학과</td>
-                    <td>4</td>
-                    <td>500</td>
-                  </tr>
-                  <tr>
-                    <td>14011049</td>
-                    <td>강은기</td>
-                    <td>컴퓨터공학과</td>
-                    <td>3</td>
-                    <td>700</td>
-                  </tr>
-                  <tr>
-                    <td>14011049</td>
-                    <td>강은기</td>
-                    <td>컴퓨터공학과</td>
-                    <td>3</td>
-                    <td>700</td>
-                  </tr>
-                  <tr>
-                    <td>14011049</td>
-                    <td>강은기</td>
-                    <td>컴퓨터공학과</td>
-                    <td>3</td>
-                    <td>700</td>
-                  </tr>
-                  <tr>
-                    <td>14011021</td>
-                    <td>박희준</td>
-                    <td>컴퓨터공학과</td>
-                    <td>3</td>
-                    <td>400</td>
-                  </tr>
+                  <% for(var i = 0; i < allRanking.length; i++) { %>
+                    <tr>
+                      <td><%- allRanking[i].ID %></td>
+                      <td><%- allRanking[i].Name %></td>
+                      <td><%- allRanking[i].Major %></td>
+                      <td><%- allRanking[i].Year %></td>
+                      <td><%- allRanking[i].SWContest18 %></td>
+                    </tr>
+                  <% } %>
                   </tfoot>
                 </table>
               </div>
