@@ -19,7 +19,7 @@ module.exports.getInfo = function(conn, contestID) {
 }
 
 module.exports.get100Info = function(conn, ContestID, ProblemNum) { //  ContestID, ProblemNum 백점인 사람 수
-  var sql = 'select count(*) from score where ContestID = ? and ProblemNum = ? and Score = 100';
+  var sql = 'select * from student where ID in (select StudentID from score where ContestID = ? and ProblemNum = ? and Score = 100)';
   var results = new Object();
   conn.query(sql, [ContestID, ProblemNum], function(err, result, fields) {
     if (err) {
@@ -36,7 +36,7 @@ module.exports.get100Info = function(conn, ContestID, ProblemNum) { //  ContestI
 }
 
 module.exports.getNot100Info = function(conn, ContestID, ProblemNum) { //  ContestID, ProblemNum 백점인 사람 수
-  var sql = 'select count(*) from score where ContestID = ? and ProblemNum = ? and NOT Score = 100';
+  var sql = 'select * from student where ID in (select StudentID from score where ContestID = ? and ProblemNum = ? and Not Score = 100)';
   var results = new Object();
   conn.query(sql, [ContestID, ProblemNum], function(err, result, fields) {
     if (err) {
