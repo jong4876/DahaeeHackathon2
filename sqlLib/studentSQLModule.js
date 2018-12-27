@@ -3,11 +3,10 @@ var deasync = require('deasync');
 var errorHandlingModule = require('../errorHandlingModule.js');
 
 var conn = mysql.createConnection({
-  host: 'www5.dynu.net',
-  port: '43306',
-  user: 'myadmin',
+  host: 'localhost',
+  user: 'test2',
   //user: 'debian-sys-maint',   //AWS 전용
-  password: 'myadmin',
+  password: '111111',
   //password: 'HoF7vJTdGAyfMvIc',
   database: 'hackathondb'
 });
