@@ -35,7 +35,7 @@ module.exports.get100Info = function(conn, ContestID, ProblemNum) { //  ContestI
 }
 
 module.exports.get100Info = function(conn, ContestID, ProblemNum) { //  ContestID, ProblemNum 백점인 사람 수
-  var sql = 'select * from student where ID in (select StudentID from score where ContestID = ? and ProblemNum = ? and Score = 100)';
+  var sql = 'select ProblemNum, count(*) from score group by ProblemNum where ';
   var results = new Object();
   conn.query(sql, [ContestID, ProblemNum], function(err, result, fields) {
     if (err) {
@@ -52,27 +52,9 @@ module.exports.get100Info = function(conn, ContestID, ProblemNum) { //  ContestI
 }
 
 module.exports.getNot100Info = function(conn, ContestID, ProblemNum) { //  ContestID, ProblemNum 백점인 사람 수
-  var sql = 'select * from student where ID in (select StudentID from score where ContestID = ? and ProblemNum = ? and Not Score = 100)';
+  var sql = 'select ProblemNum, count(*) from score group by ProblemNum';
   var results = new Object();
   conn.query(sql, [ContestID, ProblemNum], function(err, result, fields) {
-    if (err) {
-      console.log(err);
-      return 'Internal Server Err';
-    } else {
-      results = result;
-    }
-  });
-  while (!errorHandlingModule.isObjectData(results)) {
-    deasync.sleep(100);
-  }
-  return results;
-}
-
-
-module.exports.getProblemCount = function(conn) { // 문제 별 사람수
-  var sql = 'select * from score order by StudentID';
-  var results = new Object();
-  conn.query(sql, function(err, result, fields) {
     if (err) {
       console.log(err);
       return 'Internal Server Err';
