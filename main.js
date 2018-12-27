@@ -113,8 +113,10 @@ app.get('/problemChart', function(req, res) {
 })
 
 app.get('/select', function(req, res) {
-  var scoreNot100Info = scoreSQLModule.getNot100Info(conn,1,1); // 100점 사람  4번
-  var score100Info = scoreSQLModule.get100Info(conn,1,1);
+  var scoreNot100Info = scoreSQLModule.getNot100Info(conn,17,1); // 100점 사람  4번
+  var score100Info = scoreSQLModule.get100Info(conn,17,1);
+
+  console.log(scoreNot100Info);
 
   res.render('select.ejs', {score100Info: score100Info, scoreNot100Info: scoreNot100Info});
 })
