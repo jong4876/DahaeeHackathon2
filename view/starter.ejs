@@ -40,11 +40,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition skin-red sidebar-mini">
 <div class="wrapper">
 
-  <header class="main-header"></header>
+  <header class="main-header" style="position: fixed; width: 100%;"></header>
   <aside class="main-sidebar"></aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper"  style="margin-top: 50px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -52,6 +52,170 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <small>2018</small>
       </h1>
       <ol class="breadcrumb">
+
+        <a href="#!" data-dismiss="modal" data-toggle="modal" data-target="#modal-chartselector"><i class="fa fa-fw fa-plus-square-o"></i> 차트를 추가하세요.</a>
+        <div class="modal fade" id="modal-chartselector">
+              <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h4 class="modal-title text-center">차트 종류를 선택하세요.</h4>
+                      </div>
+                      <div class="modal-body">
+
+                        <div class="row">
+                          <div class="col-md-6">
+                            <!-- AREA CHART -->
+                            <div class="box box-primary">
+                              <div class="box-header with-border">
+                                <h3 class="box-title">Area Chart</h3>
+
+                                <div class="box-tools pull-right">
+                                </div>
+                              </div>
+                              <div class="box-body">
+                                <div class="chart">
+                                  <a href="#!" data-toggle="modal" data-target="#modal-dataselector" data-dismiss="modal">
+                                    <img src="dist/img/areachart.png" style="height: 139px; width: 349px;" width="349" height="139"></img>
+                                  </a>
+                                </div>
+                              </div>
+                              <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+
+                            <!-- DONUT CHART -->
+                            <div class="box box-danger">
+                              <div class="box-header with-border">
+                                <h3 class="box-title">Donut Chart</h3>
+
+                                <div class="box-tools pull-right">
+                                </div>
+                              </div>
+                              <div class="box-body">
+                                <a href="#!" data-toggle="modal" data-target="#modal-dataselector" data-dismiss="modal">
+                                  <img src="dist/img/piechart.png" style="height: 184px; width: 369px;" width="369" height="184"></img>
+                                </a>
+                              </div>
+                              <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+
+                          </div>
+                          <!-- /.col (LEFT) -->
+                          <div class="col-md-6">
+                            <!-- LINE CHART -->
+                            <div class="box box-info">
+                              <div class="box-header with-border">
+                                <h3 class="box-title">Line Chart</h3>
+
+                                <div class="box-tools pull-right">
+                                </div>
+                              </div>
+                              <div class="box-body">
+                                <div class="chart">
+                                  <a href="#!" data-toggle="modal" data-target="#modal-dataselector" data-dismiss="modal">
+                                    <img src="dist/img/linechart.png" style="height: 139px; width: 349px;" width="349" height="139"></img>
+                                  </a>
+                                </div>
+                              </div>
+                              <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+
+                            <!-- BAR CHART -->
+                            <div class="box box-success">
+                              <div class="box-header with-border">
+                                <h3 class="box-title">Bar Chart</h3>
+
+                                <div class="box-tools pull-right">
+                                </div>
+                              </div>
+                              <div class="box-body">
+                                <div class="chart">
+                                  <a href="#!" data-toggle="modal" data-target="#modal-dataselector" data-dismiss="modal">
+                                    <img src="dist/img/barchart.png" style="height: 128px; width: 349px;" width="349" height="128"></img>
+                                  </a>
+                                </div>
+                              </div>
+                              <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+
+                          </div>
+                          <!-- /.col (RIGHT) -->
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                      </div>
+                  </div>
+                  <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+          </div>
+
+
+
+
+
+          <div class="modal fade" id="modal-dataselector">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          <h4 class="modal-title text-center">데이터 종류를 선택하세요.</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row" style="font-size:20px;">
+                            <!-- AREA CHART -->
+                            <div class="box box-primary">
+                              <div class="box-header with-border">
+                                <h3 class="box-title">New Chart</h3>
+                                <div class="box-tools pull-right">
+                                </div>
+                              </div>
+                              <div class="box-body">
+                                년도&nbsp;&nbsp;
+                                <input type="checkbox" name="year" value="2017"> 2017</input>&nbsp;&nbsp;
+                                <input type="checkbox" name="year" value="2018"> 2018</input>&nbsp;&nbsp;
+                                <input type="checkbox" name="year" value="2019"> 2019</input><br><br>
+                                학년&nbsp;&nbsp;
+                                <input type="checkbox" name="grade" value="1"> 1</input>&nbsp;&nbsp;
+                                <input type="checkbox" name="grade" value="2"> 2</input>&nbsp;&nbsp;
+                                <input type="checkbox" name="grade" value="3"> 3</input>&nbsp;&nbsp;
+                                <input type="checkbox" name="grade" value="4"> 4</input><br><br>
+                                현황&nbsp;&nbsp;
+                                <input type="radio" name="contest" value="17"> 문제별 점수</input>&nbsp;&nbsp;
+                                <input type="radio" name="contest" value="18"> 문제별 통과 현황</input>&nbsp;&nbsp;
+                                <input type="radio" name="contest" value="18"> 학과별 평균 점수</input><br><br>
+                                학과&nbsp;&nbsp;
+                                <input type="checkbox" name="grade" value="COM"> 컴퓨터공학과</input>&nbsp;&nbsp;
+                                <input type="checkbox" name="grade" value="CS"> 창의소프트학부</input>&nbsp;&nbsp;
+                                <input type="checkbox" name="grade" value="SW"> 소프트웨어학과</input>&nbsp;&nbsp;
+                                <input type="checkbox" name="grade" value="SEC"> 정보보호학과</input>&nbsp;&nbsp;
+                                <input type="checkbox" name="grade" value="IT"> 지능기전공학부</input>&nbsp;&nbsp;
+                                <input type="checkbox" name="grade" value="DS"> 데이터사이언스학과</input><br><br>
+                                전공 여부&nbsp;&nbsp;
+                                <input type="radio" name="specified" value="0"> 비전공자</input>&nbsp;&nbsp;
+                                <input type="radio" name="specified" value="1"> 전공자</input><br><br>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button id="btn-bar-chart" type="button" class="btn btn-default" data-dismiss="modal">제출</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
         <li><a href="#"><i class="fa fa-dashboard"></i> SW경시대회</a></li>
         <li class="active">차트</li>
       </ol>
@@ -62,14 +226,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row">
           <div class="col-md-6 connectedSortable">
             <!-- AREA CHART -->
-            <div class="box box-primary nav-tabs-custom">
-              <div class="box-header with-border nav-tabs">
-                <h3 class="box-title">성적 분포도</h3>
-  
-                <div class="box-tools pull-right">
-                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              <div class="box box-primary nav-tabs-custom">
+                <div class="box-header with-border nav-tabs">
+                  <h3 class="box-title">성적 분포도</h3>
+
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
                 </div>
               </div>
               <div class="box-body">
@@ -77,11 +242,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <canvas id="areaChart" style="height:250px"></canvas>
                 </div>
               </div>
-              <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
-            <!-- Donut chart -->
-            <div class="box box-primary nav-tabs-custom">
+
+
+
+
+              <div id="hidden-area-chart" style="display:none;"class="box box-primary nav-tabs-custom">
+                <div class="box-header with-border nav-tabs">
+                  <h3 class="box-title">Hidden Area Chart</h3>
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                    <canvas id="areaChartExt" style="height:250px"></canvas>
+                  </div>
+                </div>
+                <!-- /.box-body -->
+              </div>
+              <script>
+                document.getElementById("btn-area-chart").onclick = function(){
+                  document.getElementById("hidden-area-chart").css('display','block');
+                  alert('aaaaa');
+                };
+              </script>
+
+
+              <!-- /.box -->
+            <!-- DONUT CHART -->
+            <div class="box box-danger nav-tabs-custom">
               <div class="box-header with-border nav-tabs">
                 <i class="fa fa-bar-chart-o"></i>
 
@@ -99,6 +290,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <!-- /.box-body-->
             </div>
             <!-- /.box -->
+
           </div>
           <!-- /.col (LEFT) -->
           <div class="col-md-6 connectedSortable">
@@ -121,11 +313,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <!-- /.box-body-->
             </div>
             <!-- /.box -->
+
             <!-- BAR CHART -->
             <div class="box box-success nav-tabs-custom">
               <div class="box-header with-border nav-tabs">
                 <h3 class="box-title">문제별 통과현황</h3>
-  
+
                 <div class="box-tools pull-right">
                   <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                   </button>
@@ -148,7 +341,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- /.row -->
     </section>
     <!-- /.content -->
-    
+
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1 id="table">
@@ -156,7 +349,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <small>2018</small>
         </h1>
         <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> SW경시대회</a></li>
+          <li><a href="/"><i class="fa fa-dashboard"></i> SW경시대회</a></li>
           <li class="active">전체순위</li>
         </ol>
       </section>
@@ -326,7 +519,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           areaChart(data);
       }
   })
-  
+
   var delay = 10000;
   setInterval(function(){
     $.ajax({
@@ -363,6 +556,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
       flotDonutChart(data);
     }
   })
+
+  var delay = 10000;
+  setInterval(function(){
+    $.ajax({
+    type : "get",
+    //dataType: "json"
+    data: {'id':'admin'},
+    dataType : 'text',
+    url : "/gradeChart",
+    success : function(data) {
+      pieChart(data);
+    }
+  })}, delay);
 </script>
 
 <script>
@@ -376,7 +582,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           barChart(data);
       }
   })
-  
+
   var delay = 10000;
   setInterval(function(){
     $.ajax({

@@ -1,4 +1,3 @@
-
 var deasync = require('deasync');
 var errorHandlingModule = require('../errorHandlingModule.js');
 
@@ -20,7 +19,7 @@ module.exports.getInfo = function(conn) { // 1번
   return results;
 }
 module.exports.getSWYearInfo = function(conn, Year) { // 17 or 18년도 대회 랭킹
-  var sql = 'select * from student order by SWContest'+Year+' desc';
+  var sql = 'select * from student order by SWContest' + Year + ' desc';
   var jsonTotalArray = new Array();
   var results = new Object();
   conn.query(sql, function(err, result, fields) {
@@ -47,9 +46,7 @@ module.exports.getInfoUp20per = function(conn) { // 상위 20퍼의 학생 추�
     } else {
       sql = 'select year, count(year) as count from (select * from student order by SWContest17 DESC LIMIT ?) as sub group by year';
       var intCount = 9;
-      console.log('intCount : ' +intCount);
-
-      conn.query(sql,intCount, function(err, result, fields) {
+      conn.query(sql, intCount, function(err, result, fields) {
         if (err) {
           console.log(err);
           return 'Internal Server Err';
@@ -84,7 +81,7 @@ module.exports.getAVGInfo = function(conn) { // 학과별 평균
 }
 
 module.exports.getSWYearInfo = function(conn, Year) { // 17 or 18년도 대회 랭킹
-  var sql = 'select * from student order by SWContest'+Year+' desc';
+  var sql = 'select * from student order by SWContest' + Year + ' desc';
   var jsonTotalArray = new Array();
   var results = new Object();
   conn.query(sql, function(err, result, fields) {
