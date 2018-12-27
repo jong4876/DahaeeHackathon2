@@ -67,6 +67,7 @@ app.get('/scoreChart', function(req, res) {
 
   var data = new Array();
 
+  // 라디오버튼 선택 정보 들어와야함
   for(var i=0; i<Object.keys(studentInfo).length; i++)
     data[i] = studentInfo[i].SWContest17 + ","+ studentInfo[i].SWContest18;
 

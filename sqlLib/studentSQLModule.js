@@ -55,7 +55,6 @@ module.exports.getSW17Info = function(conn) {
   return results;
 }
 
-
 module.exports.getInfoUp20per = function(conn) { // 상위 20퍼의 학생 추출
   var sql = 'SELECT count(*) as count FROM student';
   var results = new Object();

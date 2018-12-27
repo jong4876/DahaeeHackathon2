@@ -30,7 +30,7 @@ function morrisAreaChart (data) {
         temp -=1;
       result18[parseInt(temp / 100)]++;
     }
-    console.log(result17 + result18);
+    
     // AREA CHART
     var area = new Morris.Area({
       element: 'revenue-chart',

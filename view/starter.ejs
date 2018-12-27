@@ -62,28 +62,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row">
           <div class="col-md-6 connectedSortable">
             <!-- AREA CHART -->
-              <div class="box box-primary nav-tabs-custom">
-                <div class="box-header with-border nav-tabs">
-                  <h3 class="box-title">성적 분포도</h3>
-    
-                  <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                  </div>
-                </div>
-                <div class="box-body">
-                  <div class="chart">
-                    <canvas id="areaChart" style="height:250px"></canvas>
-                  </div>
-                </div>
-                <!-- /.box-body -->
-              </div>
-              <!-- /.box -->
-            <!-- DONUT CHART -->
-            <div class="box box-danger nav-tabs-custom">
+            <div class="box box-primary nav-tabs-custom">
               <div class="box-header with-border nav-tabs">
-                <h3 class="box-title">성적 상위 10% 분포</h3>
+                <h3 class="box-title">성적 분포도</h3>
   
                 <div class="box-tools pull-right">
                   <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -92,12 +73,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
               </div>
               <div class="box-body">
-                <canvas id="pieChart" style="height:250px"></canvas>
+                <div class="chart">
+                  <canvas id="areaChart" style="height:250px"></canvas>
+                </div>
               </div>
               <!-- /.box-body -->
             </div>
             <!-- /.box -->
-  
+            <!-- Donut chart -->
+            <div class="box box-primary nav-tabs-custom">
+              <div class="box-header with-border nav-tabs">
+                <i class="fa fa-bar-chart-o"></i>
+
+                <h3 class="box-title">성적 상위 10% 분포</h3>
+
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+              </div>
+              <div class="box-body">
+                <div id="donut-chart" style="height: 300px;"></div>
+              </div>
+              <!-- /.box-body-->
+            </div>
+            <!-- /.box -->
           </div>
           <!-- /.col (LEFT) -->
           <div class="col-md-6 connectedSortable">
@@ -361,13 +362,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="bower_components/Flot/jquery.flot.js"></script>
 <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
 <script src="bower_components/Flot/jquery.flot.resize.js"></script>
+<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+<script src="bower_components/Flot/jquery.flot.pie.js"></script>
 <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
 <script src="bower_components/Flot/jquery.flot.categories.js"></script>
 
 <!-- chart script -->
 <script src="components/js/areaChart.js"></script>
 <script src="components/js/flotBarChart.js"></script>
-<script src="components/js/pieChart.js"></script>
+<script src="components/js/flotDonutChart.js"></script>
 <script src="components/js/barChart.js"></script>
 <!-- table script -->
 <script src="components/js/dataTable.js"></script>
@@ -409,19 +412,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         flotBarChart(data);
       }
   })
-
-  var delay = 10000;
-  setInterval(function(){
-    $.ajax({
-      type : "get",
-      //dataType: "json"
-      data: {'id':'admin'},
-      dataType : 'text',
-      url : "/majorChart",
-      success : function(data) {
-        flotBarChart(data);
-      }
-  })}, delay);
 </script>
 <script>
   $.ajax({
@@ -431,22 +421,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     dataType : 'text',
     url : "/gradeChart",
     success : function(data) {
-      pieChart(data);
+      flotDonutChart(data);
     }
   })
-  
-  var delay = 10000;
-  setInterval(function(){
-    $.ajax({
-    type : "get",
-    //dataType: "json"
-    data: {'id':'admin'},
-    dataType : 'text',
-    url : "/gradeChart",
-    success : function(data) {
-      pieChart(data);
-    }
-  })}, delay);
 </script>
 
 <script>
