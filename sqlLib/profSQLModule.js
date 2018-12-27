@@ -13,7 +13,7 @@ var conn = mysql.createConnection({
 });
 conn.connect();
 
-module.exports.getProfInfo = function() {
+module.exports.getInfo = function() {
   console.log("???");
   var sql = 'select * from professor order by ID';
   var results = new Object();
