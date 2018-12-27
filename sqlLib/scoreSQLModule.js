@@ -36,6 +36,25 @@ module.exports.get100Info = function(conn, ContestID, ProblemNum) { //  ContestI
 }
 
 
+module.exports.getNot100Info = function(conn, ContestID, ProblemNum) { //  ContestID, ProblemNum 백점인 사람 수
+  var sql = 'select * from student where ID in (select StudentID from score where ContestID = ? and ProblemNum = ?)';
+  var results = new Object();
+  conn.query(sql, [ContestID, ProblemNum], function(err, result, fields) {
+    if (err) {
+      console.log(err);
+      return 'Internal Server Err';
+    } else {
+      results = result;
+    }
+  });
+  while (!errorHandlingModule.isObjectData(results)) {
+    deasync.sleep(100);
+  }
+  return results;
+}
+
+
+
 module.exports.get100Count = function(conn, ContestID, ProblemNum) { //  ContestID, ProblemNum 백점인 사람 수
   var sql = 'select ProblemNum, count(*) as cnt from score group by ProblemNum';
   var results = new Object();
