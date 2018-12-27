@@ -30,16 +30,21 @@ app.get('/test', function(req, res) {
   var profInfo = profSQLModule.getInfo(conn);
   var classInfo = classSQLModule.getInfo(conn);
   var studentAVGInfo = studentSQLModule.getAVGInfo(conn);
-  var studentInfoUp20per = studentSQLModule.getInfoUp20per(conn); // 도넛
+  var studentSWYearInfo = studentSQLModule.getSWYearInfo(conn, 17);
 
-  var scoreNot100Count = scoreSQLModule.getNot100Count(conn);  // 100점 사람  4번
+  var scoreNot100Count = scoreSQLModule.getNot100Count(conn);  // 도넛
   var score100Count = scoreSQLModule.get100Count(conn);
 
-  res.send(score100Count);
+  res.send(studentSWYearInfo);
 })
 
 app.get('/', function(req, res) {
-  res.render('starter.ejs');
+
+  var allRanking = studentSQLModule.getSWYearInfo(conn, 18);
+
+  console.log(allRanking);
+
+  res.render('starter.ejs', {allRanking : allRanking});
 })
 
 app.get('/header', function(req, res) {
@@ -113,6 +118,6 @@ app.get('/select', function(req, res) {
   res.render('select.ejs', {score100Info: score100Info, scoreNot100Info: scoreNot100Info});
 })
 
-app.listen(3001, function() {
+app.listen(3000, function() {
   console.log('Connected, 3001port!!');
 });
