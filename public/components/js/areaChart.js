@@ -3,7 +3,7 @@ $(function () {
      * -------
      * Here we will create a few charts using ChartJS
      */
-    console.log('bye');
+    console.log('bye')
     //--------------
     //- AREA CHART -
     //--------------

@@ -39,12 +39,32 @@ app.get('/test', function(req, res) {
 })
 
 app.get('/', function(req, res) {
-  var scoreInfo = scoreSQLModule.getNot100Info(conn,1,1);
-  console.log(scoreInfo);
+  var studentInfo = studentSQLModule.getInfo(conn);
+
+  var data17 = [0, 0, 0, 0, 0, 0, 0, 0];
+  var data18 = [0, 0, 0, 0, 0, 0, 0, 0];
+  
+  for(var i=0; i<Object.keys(studentInfo).length; i++) {
+    data17[parseInt(studentInfo[i].SWContest17*1 / 100)]++;
+    data18[parseInt(studentInfo[i].SWContest18*1 / 100)]++;
+  }
 
   res.render('starter.ejs', {
-    scoreInfo: scoreInfo
+    data17: data17,
+    data18: data18
   });
+})
+
+app.get('/header', function(req, res) {
+  res.render('include/header.html');
+})
+
+app.get('/sidebar', function(req, res) {
+  res.render('include/sidebar.html');
+})
+
+app.get('/footer', function(req, res) {
+  res.render('include/footer.html');
 })
 
 app.get('/index', function(req, res) {
