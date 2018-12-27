@@ -24,7 +24,7 @@ module.exports.isRequestData = function(obj) {
  */
 module.exports.isObjectData = function(obj) {
   if (JSON.stringify(obj) == '{}') {
-    console.log("Null Object or Wait Async");
+    console.log("Wait Async");
     return false;
   } else
     return true;

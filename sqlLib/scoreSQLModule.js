@@ -17,7 +17,7 @@ module.exports.getInfo = function(conn, contestID) {
   }
   return results;
 }
-module.exports.get100Info = function(conn, ContestID, ProblemNum) { //  ContestID, ProblemNum 백점인 사람 수
+module.exports.getNot100Count = function(conn, ContestID, ProblemNum) { //  ContestID, ProblemNum 백점인 사람 수
   var sql = 'select * from student where ID in (select StudentID from score where ContestID = ? and ProblemNum = ? and Score = 100)';
   var results = new Object();
   conn.query(sql, [ContestID, ProblemNum], function(err, result, fields) {
@@ -34,8 +34,8 @@ module.exports.get100Info = function(conn, ContestID, ProblemNum) { //  ContestI
   return results;
 }
 
-module.exports.get100Info = function(conn, ContestID, ProblemNum) { //  ContestID, ProblemNum 백점인 사람 수
-  var sql = 'select ProblemNum, count(*) from score group by ProblemNum where ';
+module.exports.get100Count = function(conn, ContestID, ProblemNum) { //  ContestID, ProblemNum 백점인 사람 수
+  var sql = 'select ProblemNum, count(*) from score group by ProblemNum';
   var results = new Object();
   conn.query(sql, [ContestID, ProblemNum], function(err, result, fields) {
     if (err) {
@@ -51,8 +51,8 @@ module.exports.get100Info = function(conn, ContestID, ProblemNum) { //  ContestI
   return results;
 }
 
-module.exports.getNot100Info = function(conn, ContestID, ProblemNum) { //  ContestID, ProblemNum 백점인 사람 수
-  var sql = 'select ProblemNum, count(*) from score group by ProblemNum';
+module.exports.getNot100Count = function(conn, ContestID, ProblemNum) { //  ContestID, ProblemNum 백점인 사람 수
+  var sql = 'select ProblemNum, count(*) from score group by ProblemNum where Score != 100';
   var results = new Object();
   conn.query(sql, [ContestID, ProblemNum], function(err, result, fields) {
     if (err) {
