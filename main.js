@@ -28,12 +28,13 @@ conn.connect();
 app.get('/test', function(req, res) {
 
   var profInfo = profSQLModule.getInfo(conn);
+  var classInfo = classSQLModule.getInfo(conn);
   var studentInfo = studentSQLModule.getInfo(conn);
-  var classInfo = studentSQLModule.getInfo(conn);
-  var scoreInfo = scoreSQLModule.getNot100Info(conn,1,1);
+  var scoreInfo = scoreSQLModule.getNot100Info(conn,1,1); // 100점 사람  4번
 
 
-  res.send(scoreInfo);
+
+  res.send(studentInfo);
 })
 
 app.get('/', function(req, res) {
