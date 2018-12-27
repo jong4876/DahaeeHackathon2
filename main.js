@@ -30,12 +30,12 @@ app.get('/test', function(req, res) {
   var profInfo = profSQLModule.getInfo(conn);
   var classInfo = classSQLModule.getInfo(conn);
   var studentAVGInfo = studentSQLModule.getAVGInfo(conn);
-  var studentInfoUp20per = studentSQLModule.getInfoUp20per(conn); // 도넛
+  var studentSWYearInfo = studentSQLModule.getSWYearInfo(conn, 17);
 
-  var scoreNot100Count = scoreSQLModule.getNot100Count(conn);  // 100점 사람  4번
+  var scoreNot100Count = scoreSQLModule.getNot100Count(conn);  // 도넛
   var score100Count = scoreSQLModule.get100Count(conn);
 
-  res.send(score100Count);
+  res.send(studentSWYearInfo);
 })
 
 app.get('/', function(req, res) {
