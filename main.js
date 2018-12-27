@@ -45,21 +45,20 @@ app.get('/', function(req, res) {
 
   var allRanking = studentSQLModule.getSWYearInfo(conn, 18);
 
-  console.log(allRanking);
-
   res.render('starter.ejs', {
     allRanking: allRanking
   });
 })
 
-app.post('/receiver', function(req, res) {
+app.get('/receiver', function(req, res) {
   var allRanking = studentSQLModule.getSWYearInfo(conn, 18);
-  var avgObj = dynamicSQLModule.getDynamicAVGInfoByYearMajor(conn, req.body.year, req.body.grade, req.body.major);
-  console.log(avgObj);
+  var avgObj = dynamicSQLModule.getDynamicAVGInfoByYear(conn, req.query.year, req.query.major);
+  var data = new Array();
 
-  res.render('starter.ejs', {
-    allRanking: allRanking, avgObj: avgObj
-  });
+  for (var i = 0; i < Object.keys(avgObj).length; i++)
+    data[i] = avgObj[i].Year + "," + avgObj[i].AVG;
+  console.log(data);
+  res.send(data);
 })
 
 
@@ -140,15 +139,12 @@ app.get('/problemChart', function(req, res) {
   for (var i = 0; i < score100Count.length; i++)
     data[i] = score100Count[i].count + "," + scoreNot100Count[i].count;
 
-  console.log(data);
   res.send(data);
 })
 
 app.get('/select', function(req, res) {
   var scoreNot100Info = scoreSQLModule.getNot100Info(conn, 17, 1); // 100점 사람  4번
   var score100Info = scoreSQLModule.get100Info(conn, 17, 1);
-
-  console.log(scoreNot100Info);
 
   res.render('select.ejs', {
     score100Info: score100Info,

@@ -190,16 +190,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                <input type="radio" name="major" value="정보보호학과"> 정보보호학과</input>&nbsp;&nbsp;
                                <input type="radio" name="major" value="지능기전공학부"> 지능기전공학부</input>&nbsp;&nbsp;
                                <input type="radio" name="major" value="데이터사이언스학과"> 데이터사이언스학과</input><br><br>
-                               전공 여부&nbsp;&nbsp;
-                               <input type="radio" name="specified" value="0"> 비전공자</input>&nbsp;&nbsp;
-                               <input type="radio" name="specified" value="1"> 전공자</input><br><br>
                              </div>
 
                            </div>
                        </div>
                      </div>
                      <div class="modal-footer">
-                         <button id="btn-bar-chart" type="button" class="btn btn-default" data-dismiss="modal">제출</button>
+                         <button id="btn-area-chart" type="button" class="btn btn-default" data-dismiss="modal">제출</button>
                         </div>
                       </div>
                     </div>
@@ -436,64 +433,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script>
   $(document).ready(function() {
     $("#btn-area-chart").click(function(){
-      console.log(localStorage.chart);
-      if(localStorage.chart == 'area') {
-        $("#target-chart").load("areachart")
-
-          $.ajax({
-          type : "get",
-          //dataType: "json"
-          data: {'id':'admin'},
-          dataType : 'text',
-
-          url : "/scoreChart",
-          success : function(data) {
-              areaChart(data);
-          }
-        })
-      } else if(localStorage.chart == 'flotbar') {
-        $("#target-chart").load("flotBarchart")
-
-          $.ajax({
-          type : "get",
-          //dataType: "json"
-          data: {'id':'admin'},
-          dataType : 'text',
-
-          url : "/majorChart",
-          success : function(data) {
-              flotBarChart(data);
-          }
-        })
-      } else if(localStorage.chart == 'donut') {
-        $("#target-chart").load("donutchart")
-
-          $.ajax({
-          type : "get",
-          //dataType: "json"
-          data: {'id':'admin'},
-          dataType : 'text',
-
-          url : "/gradeChart",
-          success : function(data) {
-            flotDonutChart(data);
-          }
-        })
-      } else if(localStorage.chart == 'bar') {
-        $("#target-chart").load("barchart")
-
-          $.ajax({
-          type : "get",
-          //dataType: "json"
-          data: {'id':'admin'},
-          dataType : 'text',
-
-          url : "/problemChart",
-          success : function(data) {
-            barChart(data);
-          }
-        })
-      }
+      
     });
   });
 </script>
@@ -545,19 +485,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
           areaChart(data);
       }
   })
-
-  var delay = 10000;
-  setInterval(function(){
-    $.ajax({
-      type : "get",
-      //dataType: "json"
-      data: {'id':'admin'},
-      dataType : 'text',
-      url : "/scoreChart",
-      success : function(data) {
-          areaChart(data);
-      }
-  })}, delay);
 </script>
 <script>
  function chart(arg) { localStorage.chart = arg; }
@@ -598,18 +525,59 @@ function submission(){
     datas['major'] = $("input[name=major]").attr("value");
     datas['specified'] = $("input[name=specified]").attr("value");
 
-    $.ajax({
-       type: "POST",
-       url: "/receiver",
-       data: datas,
-       success: function(result) {
-         console.log(result);
-          self.close();
-       },
-       error: function(jqXHR, textStatus, errorThrown) {
-          self.close();
-       }
-    });
+    if(localStorage.chart == 'area') {
+        $("#target-chart").load("areachart")
+
+          $.ajax({
+            type: "get",
+            url: "/receiver",
+            data: {"year" : datas['year'], "grade" : datas['grade'], "major" : datas['major']},
+            success: function(data) {
+              areaChart(data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+            }
+          });
+      } else if(localStorage.chart == 'flotbar') {
+        $("#target-chart").load("flotBarchart")
+
+          $.ajax({
+            type: "get",
+            url: "/receiver",
+            data: {"year" : datas['year'], "grade" : datas['grade'], "major" : datas['major']},
+            success: function(data) {
+                flotBarChart(data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+            }
+          });
+      } else if(localStorage.chart == 'donut') {
+        $("#target-chart").load("donutchart")
+
+          $.ajax({
+            type: "get",
+            url: "/receiver",
+            data: {"year" : datas['year'], "grade" : datas['grade'], "major" : datas['major']},
+            success: function(data) {
+              flotDonutChart(data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+            }
+          });
+      } else if(localStorage.chart == 'bar') {
+        $("#target-chart").load("barchart")
+        
+          $.ajax({
+            type: "get",
+            url: "/receiver",
+            data: {"year" : datas['year'], "grade" : datas['grade'], "major" : datas['major']},
+            success: function(data) {
+              barChart(data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+            }
+          });
+      }
   }
 </script>
 

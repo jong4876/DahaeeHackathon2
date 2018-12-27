@@ -74,6 +74,24 @@ module.exports.getDynamicALLCountByMajor = function(conn, ContestID, Major) { //
 /////////////////////////////////////////////////////////
 // 학과별 평균 점수
 
+module.exports.getDynamicAVGInfoByYear = function(conn, ContestID, Major) { // Year 학년별 Major전공 ContestID년도 대회 평균
+  var sql = 'SELECT Year, Major, avg(SWContest' + ContestID + ') as AVG FROM student where Major = ? group by Year';
+  var jsonTotalArray = new Array();
+  var results = new Object();
+  conn.query(sql, [Major], function(err, result, fields) {
+    if (err) {
+      console.log(err);
+      return 'Internal Server Err';
+    } else {
+      results = result;
+    }
+  });
+  while (!errorHandlingModule.isObjectData(results)) {
+    deasync.sleep(200);
+  }
+  return results;
+}
+
 module.exports.getDynamicAVGInfoByYearMajor = function(conn, ContestID, Year, Major) { // Year 학년별 Major전공 ContestID년도 대회 평균
   var sql = 'SELECT Year, Major, avg(SWContest' + ContestID + ') as AVG FROM student where Major = ? and Year = ? group by Year';
   var jsonTotalArray = new Array();
@@ -122,6 +140,24 @@ module.exports.getDynamicScoreInfoByMajor = function(conn, ContestID, Major) { /
   var jsonTotalArray = new Array();
   var results = new Object();
   conn.query(sql, [ContestID, Major], function(err, result, fields) {
+    if (err) {
+      console.log(err);
+      return 'Internal Server Err';
+    } else {
+      results = result;
+    }
+  });
+  while (!errorHandlingModule.isObjectData(results)) {
+    deasync.sleep(200);
+  }
+  return results;
+}
+
+module.exports.getDynamicAVGInfoByMajor = function(conn, ContestID, Year) { // Major전공의 학년별 ContestID년도 대회 평균
+  var sql = 'SELECT Year, Major, avg(SWContest' + ContestID + ') as AVG FROM student where Year = ? group by Major';
+  var jsonTotalArray = new Array();
+  var results = new Object();
+  conn.query(sql, [Year], function(err, result, fields) {
     if (err) {
       console.log(err);
       return 'Internal Server Err';

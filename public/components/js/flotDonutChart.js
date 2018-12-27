@@ -8,7 +8,11 @@ function flotDonutChart (data) {
     var dataYear = new Array();
     var dataCount = new Array();
 
-    var datas = JSON.parse(data);
+    var datas;
+    if(Array.isArray(data) == false)
+      datas = JSON.parse(data);
+    else
+      datas = data;
 
     for(var i=0; i<datas.length; i++) {
       dataYear[i] = datas[i].split(",")[0];
