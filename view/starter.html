@@ -10,6 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>AdminLTE 2 | Starter</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
@@ -287,7 +288,7 @@ desired effect
           <div class="col-md-6 connectedSortable">
             <!-- AREA CHART -->
               <div class="box box-primary nav-tabs-custom">
-                <div class="box-header with-border">
+                <div class="box-header with-border nav-tabs">
                   <h3 class="box-title">Area Chart</h3>
     
                   <div class="box-tools pull-right">
@@ -305,8 +306,8 @@ desired effect
               </div>
               <!-- /.box -->
             <!-- DONUT CHART -->
-            <div class="box box-danger">
-              <div class="box-header with-border">
+            <div class="box box-danger nav-tabs-custom">
+              <div class="box-header with-border nav-tabs">
                 <h3 class="box-title">Donut Chart</h3>
   
                 <div class="box-tools pull-right">
@@ -324,10 +325,10 @@ desired effect
   
           </div>
           <!-- /.col (LEFT) -->
-          <div class="col-md-6">
+          <div class="col-md-6 connectedSortable">
             <!-- LINE CHART -->
-            <div class="box box-info">
-              <div class="box-header with-border">
+            <div class="box box-info nav-tabs-custom">
+              <div class="box-header with-border nav-tabs">
                 <h3 class="box-title">Line Chart</h3>
   
                 <div class="box-tools pull-right">
@@ -346,8 +347,8 @@ desired effect
             <!-- /.box -->
   
             <!-- BAR CHART -->
-            <div class="box box-success">
-              <div class="box-header with-border">
+            <div class="box box-success nav-tabs-custom">
+              <div class="box-header with-border nav-tabs">
                 <h3 class="box-title">Bar Chart</h3>
   
                 <div class="box-tools pull-right">
@@ -928,6 +929,8 @@ desired effect
 
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- ChartJS -->
@@ -941,8 +944,6 @@ desired effect
 <script src="bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 
@@ -1150,7 +1151,7 @@ desired effect
 <!-- page script -->
 <script>
     $(function () {
-      $('#example1').DataTable()
+      $('#example1').DataTable();
       $('#example2').DataTable({
         'paging'      : true,
         'lengthChange': false,
@@ -1158,8 +1159,17 @@ desired effect
         'ordering'    : true,
         'info'        : true,
         'autoWidth'   : false
-      })
-    })
+      });
+      // Make the dashboard widgets sortable Using jquery UI
+      $('.connectedSortable').sortable({
+        placeholder         : 'sort-highlight',
+        connectWith         : '.connectedSortable',
+        handle              : '.nav-tabs',
+        forcePlaceholderSize: true,
+        zIndex              : 999999
+      });
+      $('.connectedSortable .nav-tabs-custom').css('cursor', 'move');
+    });    
   </script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
