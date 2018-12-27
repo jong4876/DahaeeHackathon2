@@ -29,18 +29,19 @@ app.get('/test', function(req, res) {
 
   var profInfo = profSQLModule.getInfo(conn);
   var classInfo = classSQLModule.getInfo(conn);
-  var studentInfo = studentSQLModule.getInfo(conn);
+  var studentAVGInfo = studentSQLModule.getAVGInfo(conn);
+  var studentInfoUp20per = studentSQLModule.getInfoUp20per(conn);
+
   var scoreInfo = scoreSQLModule.getNot100Info(conn,1,1); // 100점 사람  4번
 
 
-
-  res.send(studentInfo);
+  res.send(studentInfoUp20per);
 })
 
 app.get('/', function(req, res) {
   var scoreInfo = scoreSQLModule.getNot100Info(conn,1,1);
   console.log(scoreInfo);
-  
+
   res.render('starter.ejs', {
     scoreInfo: scoreInfo
   });
