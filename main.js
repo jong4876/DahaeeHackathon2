@@ -3,6 +3,8 @@ var app = express();
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var studentSQLModule = require('./sqlLib/studentSQLModule.js');
+var profSQLModule = require('./sqlLib/profSQLModule.js');
+var classSQLModule = require('./sqlLib/classSQLModule.js');
 
 
 app.set('views', __dirname + '/view');
@@ -15,10 +17,12 @@ app.use(express.static('public'));
 
 app.get('/', function(req, res) {
   var id = '14011003';
-  var studentInfo = studentSQLModule.getInfoByID(id);
+  //var studentInfo = studentSQLModule.getInfo();
+  var profSQLInfo = profSQLModule.getProfInfo();
 
-  res.send(studentInfo);
 
+
+  res.send(profSQLInfo);
 })
 
 app.get('/starter', function(req, res) {
