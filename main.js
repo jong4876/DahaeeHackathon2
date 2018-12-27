@@ -17,13 +17,11 @@ app.use(express.static('public'));
 
 
 
-app.get('/', function(req, res) {
-  var id = '14011003';
+app.get('/test', function(req, res) {
+
   var profInfo = profSQLModule.getInfo();
   var studentInfo = studentSQLModule.getInfo();
   var classInfo = studentSQLModule.getInfo();
-
-
   res.send(studentInfo);
 })
 
