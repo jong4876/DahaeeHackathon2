@@ -37,7 +37,7 @@ module.exports.getSW18Info = function(conn) { // 2번
   return results;
 }
 
-module.exports.getSW17Info = function(conn) { // 2번
+module.exports.getSW17Info = function(conn) { 
   var sql = 'select * from student order by SWContest17 desc';
   var jsonTotalArray = new Array();
   var results = new Object();
@@ -67,6 +67,7 @@ module.exports.getInfoUp20per = function(conn) { // 상위 20퍼의 학생 추�
       sql = 'select year, count(year) as count from (select * from student order by SWContest17 DESC LIMIT ?) as sub group by year';
       var intCount = 8; //parseInt(count[0].count / 5);
       console.log('intCount : ' +intCount);
+
       conn.query(sql,intCount, function(err, result, fields) {
         if (err) {
           console.log(err);
