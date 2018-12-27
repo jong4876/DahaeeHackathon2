@@ -32,10 +32,10 @@ app.get('/test', function(req, res) {
   var studentAVGInfo = studentSQLModule.getAVGInfo(conn);
   var studentInfoUp20per = studentSQLModule.getInfoUp20per(conn);
 
-  var scoreInfo = scoreSQLModule.getNot100Info(conn,1,1); // 100점 사람  4번
+  var scoreNot100Info = scoreSQLModule.getNot100Info(conn,1,1); // 100점 사람  4번
+  var score100Info = scoreSQLModule.get100Info(conn,1,1);
 
-
-  res.send(studentInfoUp20per);
+  res.send(score100Info);
 })
 
 app.get('/', function(req, res) {
@@ -43,7 +43,7 @@ app.get('/', function(req, res) {
 
   var data17 = [0, 0, 0, 0, 0, 0, 0, 0];
   var data18 = [0, 0, 0, 0, 0, 0, 0, 0];
-  
+
   for(var i=0; i<Object.keys(studentInfo).length; i++) {
     data17[parseInt(studentInfo[i].SWContest17*1 / 100)]++;
     data18[parseInt(studentInfo[i].SWContest18*1 / 100)]++;

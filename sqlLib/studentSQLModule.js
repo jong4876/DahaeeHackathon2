@@ -30,9 +30,10 @@ module.exports.getInfoUp20per = function(conn) { // 상위 20퍼의 학생 추�
       console.log(err);
       return 'Internal Server Err';
     } else {
-      console.log("count : "+ count[0].count );
       sql = 'SELECT * FROM student order by SWContest17 DESC LIMIT ?';
-      conn.query(sql,[count[0].count / 5], function(err, result, fields) {
+      var intCount = parseInt(count[0].count / 5);
+      console.log('intCount : ' +intCount);
+      conn.query(sql,intCount, function(err, result, fields) {
         if (err) {
           console.log(err);
           return 'Internal Server Err';
