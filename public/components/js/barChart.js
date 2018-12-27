@@ -3,7 +3,11 @@ function barChart (data) {
     //- BAR CHART -
     //-------------
     
-    var datas = JSON.parse(data);
+    var datas;
+    if(Array.isArray(data) == false)
+      datas = JSON.parse(data);
+    else
+      datas = data;
     var data1 = new Array();
     var data2 = new Array();
     var listTag = new Array();

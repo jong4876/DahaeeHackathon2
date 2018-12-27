@@ -15,7 +15,11 @@ function areaChart (data) {
     var result = new Array(new Array(), new Array());
     var dataArray = new Array(new Array(), new Array());
 
-    var datas = JSON.parse(data);
+    var datas;
+    if(Array.isArray(data) == false)
+      datas = JSON.parse(data);
+    else
+      datas = data;
 
     for(var i=0; i<datas[0].split(",").length; i++){
       for(var j=0; j<8; j++) {

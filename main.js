@@ -57,7 +57,7 @@ app.get('/receiver', function(req, res) {
 
   for (var i = 0; i < Object.keys(avgObj).length; i++)
     data[i] = avgObj[i].Year + "," + avgObj[i].AVG;
-
+  console.log(data);
   res.send(data);
 })
 

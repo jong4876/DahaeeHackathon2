@@ -6,11 +6,12 @@
     var dataX = new Array();
     var dataY = new Array();
 
-    data = data.toString();
     console.log(data);
-
-    var datas = JSON.parse(data);
-    
+    var datas;
+    if(Array.isArray(data) == false)
+      datas = JSON.parse(data);
+    else
+      datas = data;
     console.log(datas);
 
     for(var i=0; i<datas.length; i++) {
@@ -18,8 +19,11 @@
       dataY[i] = datas[i].split(",")[1];
     }
 
-    for(var i=0; i<datas.length; i++)
+    for(var i=0; i<datas.length; i++){
+      if(dataX[i].length == 1)
+        dataX[i] += "학년";
       dataY[i] = dataY[i]*1;
+    }
     
     var result = [];
     for(var i=0; i<datas.length; i++) {

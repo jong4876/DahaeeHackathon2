@@ -597,13 +597,11 @@ function submission(){
     $.ajax({
        type: "get",
        url: "/receiver",
-       data: {"year" : datas['year'], "major" : datas['major']},
+       data: {"year" : datas['year'], "grade" : datas['grade'], "major" : datas['major']},
        success: function(data) {
           flotBarChart(data);
-          self.close();
        },
        error: function(jqXHR, textStatus, errorThrown) {
-          self.close();
        }
     });
   }

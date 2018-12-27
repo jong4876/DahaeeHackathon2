@@ -152,3 +152,21 @@ module.exports.getDynamicScoreInfoByMajor = function(conn, ContestID, Major) { /
   }
   return results;
 }
+
+module.exports.getDynamicAVGInfoByMajor = function(conn, ContestID, Year) { // Major전공의 학년별 ContestID년도 대회 평균
+  var sql = 'SELECT Year, Major, avg(SWContest' + ContestID + ') as AVG FROM student where Year = ? group by Major';
+  var jsonTotalArray = new Array();
+  var results = new Object();
+  conn.query(sql, [Year], function(err, result, fields) {
+    if (err) {
+      console.log(err);
+      return 'Internal Server Err';
+    } else {
+      results = result;
+    }
+  });
+  while (!errorHandlingModule.isObjectData(results)) {
+    deasync.sleep(200);
+  }
+  return results;
+}
