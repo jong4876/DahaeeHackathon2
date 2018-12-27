@@ -59,6 +59,22 @@ app.get('/footer', function(req, res) {
   res.render('include/footer.html');
 })
 
+app.get('/areachart', function(req, res) {
+  res.render('include/areachart.html');
+})
+
+app.get('/donutchart', function(req, res) {
+  res.render('include/donutchart.html');
+})
+
+app.get('/flotBarchart', function(req, res) {
+  res.render('include/flotBarchart.html');
+})
+
+app.get('/barchart', function(req, res) {
+  res.render('include/barchart.html');
+})
+
 app.get('/index', function(req, res) {
   res.render('index.html');
 })
@@ -107,7 +123,7 @@ app.get('/problemChart', function(req, res) {
   var data = new Array();
   for(var i=0; i<score100Count.length; i++)
     data[i] = score100Count[i].count + "," + scoreNot100Count[i].count;
-    
+
   console.log(data);
   res.send(data);
 })
