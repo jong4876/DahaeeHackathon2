@@ -43,7 +43,7 @@ app.get('/', function(req, res) {
 
   var data17 = [0, 0, 0, 0, 0, 0, 0, 0];
   var data18 = [0, 0, 0, 0, 0, 0, 0, 0];
-  
+
   for(var i=0; i<Object.keys(studentInfo).length; i++) {
     data17[parseInt(studentInfo[i].SWContest17*1 / 100)]++;
     data18[parseInt(studentInfo[i].SWContest18*1 / 100)]++;
@@ -73,6 +73,42 @@ app.get('/index', function(req, res) {
 
 app.get('/index2', function(req, res) {
   res.render('index2.html');
+})
+
+app.get('/scoreChart', function(req, res) {
+  var mod = 100;
+  var score = new Array();
+  for(var i = 0; i<8; i++)
+    score[i] = parseInt(Math.random() * mod);
+
+  res.send(score);
+})
+
+app.get('/gradeChart', function(req, res) {
+  var mod = 100;
+  var score = new Array();
+  for(var i = 0; i<8; i++)
+    score[i] = parseInt(Math.random() * mod);
+
+  res.send(score);
+})
+
+app.get('/majorChart', function(req, res) {
+  var mod = 100;
+  var score = new Array();
+  for(var i = 0; i<8; i++)
+    score[i] = parseInt(Math.random() * mod);
+
+  res.send(score);
+})
+
+app.get('/problemChart', function(req, res) {
+  var mod = 100;
+  var score = new Array();
+  for(var i = 0; i<8; i++)
+    score[i] = parseInt(Math.random() * mod);
+
+  res.send(score);
 })
 
 app.listen(3000, function() {
