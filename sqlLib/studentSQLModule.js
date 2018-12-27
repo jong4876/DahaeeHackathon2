@@ -2,7 +2,7 @@
 var deasync = require('deasync');
 var errorHandlingModule = require('../errorHandlingModule.js');
 
-module.exports.getInfo = function(conn) { // 2번
+module.exports.getInfo = function(conn) { // 1qjs
   var sql = 'select * from student order by ID';
   var jsonTotalArray = new Array();
   var results = new Object();

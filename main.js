@@ -69,7 +69,7 @@ app.get('/scoreChart', function(req, res) {
 
   for(var i=0; i<Object.keys(studentInfo).length; i++)
     data[i] = studentInfo[i].SWContest17 + ","+ studentInfo[i].SWContest18;
-  
+
   res.send(data);
 })
 
@@ -107,6 +107,6 @@ app.get('/select', function(req, res) {
   res.render('select.ejs', {score100Info: score100Info, scoreNot100Info: scoreNot100Info});
 })
 
-app.listen(3001, function() {
+app.listen(3000, function() {
   console.log('Connected, 3000port!!');
 });
