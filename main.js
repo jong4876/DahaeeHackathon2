@@ -8,9 +8,7 @@ var studentSQLModule = require('./sqlLib/studentSQLModule.js');
 app.set('views', __dirname + '/view');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html'); //default엔진을 html로
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
 
 
