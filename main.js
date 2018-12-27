@@ -39,7 +39,12 @@ app.get('/test', function(req, res) {
 })
 
 app.get('/', function(req, res) {
-  res.render('starter.ejs');
+
+  var allRanking = studentSQLModule.getSWYearInfo(conn, 18);
+
+  console.log(allRanking);
+
+  res.render('starter.ejs', {allRanking : allRanking});
 })
 
 app.get('/header', function(req, res) {
@@ -67,6 +72,7 @@ app.get('/scoreChart', function(req, res) {
 
   var data = new Array();
 
+  // 라디오버튼 선택 정보 들어와야함
   for(var i=0; i<Object.keys(studentInfo).length; i++)
     data[i] = studentInfo[i].SWContest17 + ","+ studentInfo[i].SWContest18;
 
