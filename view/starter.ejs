@@ -75,7 +75,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="box-body">
                                   <div class="chart">
                                     <a href="#!" data-toggle="modal" data-target="#modal-dataselector" data-dismiss="modal">
-                                      <img src="dist/img/areachart.png" style="height: 139px; width: 349px;" width="349" height="139" onclick="chart('area')"></img>
+                                      <img src="dist/img/areachart.png" style="height: 139px; width: 349px;" width="349" height="139" onclick="localStorage.chart = 'area'"></img>
                                     </a>
                                   </div>
                                 </div>
@@ -93,7 +93,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 <div class="box-body">
                                   <a href="#!" data-toggle="modal" data-target="#modal-dataselector" data-dismiss="modal">
-                                    <img src="dist/img/piechart.png" style="height: 184px; width: 369px;" width="369" height="184" onclick="chart('pie')"></img>
+                                    <img src="dist/img/piechart.png" style="height: 184px; width: 369px;" width="369" height="184" onclick="localStorage.chart = 'donut'"></img>
                                   </a>
                                 </div>
                                 <!-- /.box-body -->
@@ -103,18 +103,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                             <!-- /.col (LEFT) -->
                             <div class="col-md-6">
-                              <!-- LINE CHART -->
+                              <!-- Flot Bar CHART -->
                               <div class="box box-info">
                                 <div class="box-header with-border">
-                                  <h3 class="box-title">Line Chart</h3>
-
-                                  <div class="box-tools pull-right">
-                                  </div>
+                                  <h3 class="box-title">Flot Bar Chart</h3>
                                 </div>
                                 <div class="box-body">
                                   <div class="chart">
                                     <a href="#!" data-toggle="modal" data-target="#modal-dataselector" data-dismiss="modal">
-                                      <img src="dist/img/linechart.png" style="height: 139px; width: 349px;" width="349" height="139" onclick="chart('line')"></img>
+                                      <img src="dist/img/flotbarchart.png" style="height: 139px; width: 349px;" width="349" height="139" onclick="localStorage.chart = 'flotbar'"></img>
                                     </a>
                                   </div>
                                 </div>
@@ -133,7 +130,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="box-body">
                                   <div class="chart">
                                     <a href="#!" data-toggle="modal" data-target="#modal-dataselector" data-dismiss="modal">
-                                      <img src="dist/img/barchart.png" style="height: 128px; width: 349px;" width="349" height="128" onclick="chart('bar')"></img>
+                                      <img src="dist/img/barchart.png" style="height: 128px; width: 349px;" width="349" height="128" onclick="localStorage.chart = 'bar'"></img>
                                     </a>
                                   </div>
                                 </div>
@@ -155,60 +152,55 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- /.modal-dialog -->
             </div>
 
-
-
-
-
             <div class="modal fade" id="modal-dataselector">
                   <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title text-center">데이터 종류를 선택하세요.</h4>
-                        </div>
-                        <div class="modal-body">
-                          <div class="row" style="font-size:20px;">
-                              <!-- AREA CHART -->
-                              <div class="box box-primary">
-                                <div class="box-header with-border">
-                                  <h3 class="box-title">New Chart</h3>
-                                  <div class="box-tools pull-right">
-                                  </div>
-                                </div>
+                          <h4 class="modal-title text-center">데이터 종류를 선택하세요.</h4>
+                     </div>
+                     <div class="modal-body">
+                       <div class="row" style="font-size:20px;">
+                           <!-- AREA CHART -->
+                           <div class="box box-primary">
+                             <div class="box-header with-border">
+                               <h3 class="box-title">New Chart</h3>
+                               <div class="box-tools pull-right">
+                               </div>
+                             </div>
 
-                              <form method="post" action="/receiver">
-                                <div class="box-body">
-                                  년도&nbsp;&nbsp;
-                                  <input type="radio" name="year" value="17" selected> 2017</input>&nbsp;&nbsp;
-                                  <input type="radio" name="year" value="18"> 2018</input>&nbsp;&nbsp;
-                                  <input type="radio" name="year" value="19"> 2019</input><br><br>
-                                  학년&nbsp;&nbsp;
-                                  <input type="radio" name="grade" value="1"> 1</input>&nbsp;&nbsp;
-                                  <input type="radio" name="grade" value="2"> 2</input>&nbsp;&nbsp;
-                                  <input type="radio" name="grade" value="3"> 3</input>&nbsp;&nbsp;
-                                  <input type="radio" name="grade" value="4"> 4</input><br><br>
-                                  현황&nbsp;&nbsp;
-                                  <input type="radio" name="contest" value="MJ"> 문제별 점수</input>&nbsp;&nbsp;
-                                  <input type="radio" name="contest" value="MT"> 문제별 통과 현황</input>&nbsp;&nbsp;
-                                  <input type="radio" name="contest" value="HP"> 학과별 평균 점수</input><br><br>
-                                  학과&nbsp;&nbsp;
-                                  <input type="radio" name="major" value="컴퓨터공학과"> 컴퓨터공학과</input>&nbsp;&nbsp;
-                                  <input type="radio" name="major" value="창의소프트학부"> 창의소프트학부</input>&nbsp;&nbsp;
-                                  <input type="radio" name="major" value="소프트웨어학과"> 소프트웨어학과</input>&nbsp;&nbsp;
-                                  <input type="radio" name="major" value="정보보호학과"> 정보보호학과</input>&nbsp;&nbsp;
-                                  <input type="radio" name="major" value="지능기전공학부"> 지능기전공학부</input>&nbsp;&nbsp;
-                                  <input type="radio" name="major" value="데이터사이언스학과"> 데이터사이언스학과</input><br><br>
-                                  전공 여부&nbsp;&nbsp;
-                                  <input type="radio" name="specified" value="0"> 비전공자</input>&nbsp;&nbsp;
-                                  <input type="radio" name="specified" value="1"> 전공자</input><br><br>
-                                </div>
+                           <form method="post" action="/receiver">
+                             <div class="box-body">
+                               년도&nbsp;&nbsp;
+                               <input type="radio" name="year" value="17" selected> 2017</input>&nbsp;&nbsp;
+                               <input type="radio" name="year" value="18"> 2018</input>&nbsp;&nbsp;
+                               <input type="radio" name="year" value="19"> 2019</input><br><br>
+                               학년&nbsp;&nbsp;
+                               <input type="radio" name="grade" value="1"> 1</input>&nbsp;&nbsp;
+                               <input type="radio" name="grade" value="2"> 2</input>&nbsp;&nbsp;
+                               <input type="radio" name="grade" value="3"> 3</input>&nbsp;&nbsp;
+                               <input type="radio" name="grade" value="4"> 4</input><br><br>
+                               현황&nbsp;&nbsp;
+                               <input type="radio" name="contest" value="MJ"> 문제별 점수</input>&nbsp;&nbsp;
+                               <input type="radio" name="contest" value="MT"> 문제별 통과 현황</input>&nbsp;&nbsp;
+                               <input type="radio" name="contest" value="HP"> 학과별 평균 점수</input><br><br>
+                               학과&nbsp;&nbsp;
+                               <input type="radio" name="major" value="컴퓨터공학과"> 컴퓨터공학과</input>&nbsp;&nbsp;
+                               <input type="radio" name="major" value="창의소프트학부"> 창의소프트학부</input>&nbsp;&nbsp;
+                               <input type="radio" name="major" value="소프트웨어학과"> 소프트웨어학과</input>&nbsp;&nbsp;
+                               <input type="radio" name="major" value="정보보호학과"> 정보보호학과</input>&nbsp;&nbsp;
+                               <input type="radio" name="major" value="지능기전공학부"> 지능기전공학부</input>&nbsp;&nbsp;
+                               <input type="radio" name="major" value="데이터사이언스학과"> 데이터사이언스학과</input><br><br>
+                               전공 여부&nbsp;&nbsp;
+                               <input type="radio" name="specified" value="0"> 비전공자</input>&nbsp;&nbsp;
+                               <input type="radio" name="specified" value="1"> 전공자</input><br><br>
+                             </div>
 
-                              </div>
-                          </div>
+                           </div>
+                       </div>
+                     </div>
+                     <div class="modal-footer">
+                         <button id="btn-bar-chart" type="button" class="btn btn-default" data-dismiss="modal">제출</button>
                         </div>
-                        <div class="modal-footer">
-                            <button id="btn-bar-chart" type="button" class="btn btn-default" data-dismiss="modal">제출</button>
-                        </div>
-                          </form>
                       </div>
                     </div>
                   </div>
@@ -444,7 +436,64 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script>
   $(document).ready(function() {
     $("#btn-area-chart").click(function(){
-      $("#target-chart").load("areachart")
+      console.log(localStorage.chart);
+      if(localStorage.chart == 'area') {
+        $("#target-chart").load("areachart")
+
+          $.ajax({
+          type : "get",
+          //dataType: "json"
+          data: {'id':'admin'},
+          dataType : 'text',
+
+          url : "/scoreChart",
+          success : function(data) {
+              areaChart(data);
+          }
+        })
+      } else if(localStorage.chart == 'flotbar') {
+        $("#target-chart").load("flotBarchart")
+
+          $.ajax({
+          type : "get",
+          //dataType: "json"
+          data: {'id':'admin'},
+          dataType : 'text',
+
+          url : "/majorChart",
+          success : function(data) {
+              flotBarChart(data);
+          }
+        })
+      } else if(localStorage.chart == 'donut') {
+        $("#target-chart").load("donutchart")
+
+          $.ajax({
+          type : "get",
+          //dataType: "json"
+          data: {'id':'admin'},
+          dataType : 'text',
+
+          url : "/gradeChart",
+          success : function(data) {
+            flotDonutChart(data);
+          }
+        })
+      } else if(localStorage.chart == 'bar') {
+        $("#target-chart").load("barchart")
+
+          $.ajax({
+          type : "get",
+          //dataType: "json"
+          data: {'id':'admin'},
+          dataType : 'text',
+
+          url : "/problemChart",
+          success : function(data) {
+            barChart(data);
+          }
+        })
+      }
     });
   });
 </script>
@@ -510,7 +559,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
       }
   })}, delay);
 </script>
-
+<script>
+ function chart(arg) { localStorage.chart = arg; }
+ $('#modal-dataselector').on('hidden.bs.modal', function(){
+   submission();
+ });
+</script>
 <script>
   $.ajax({
       type : "get",
@@ -558,6 +612,7 @@ function submission(){
     });
   }
 </script>
+
 <script>
   $.ajax({
       type : "get",
@@ -583,11 +638,5 @@ function submission(){
       }
     })}, delay);
   </script>
-  <script>
-  function chart(arg) { localStorage.chart = arg; }
-  $('#modal-dataselector').on('hidden.bs.modal', function(){
-    submission();
-  });
-</script>
 </body>
 </html>

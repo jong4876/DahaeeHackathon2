@@ -55,7 +55,6 @@ app.get('/', function(req, res) {
 app.post('/receiver', function(req, res) {
   var allRanking = studentSQLModule.getSWYearInfo(conn, 18);
   var avgObj = dynamicSQLModule.getDynamicAVGInfoByYearMajor(conn, req.body.year, req.body.grade, req.body.major);
-
   console.log(avgObj);
 
   res.render('starter.ejs', {
