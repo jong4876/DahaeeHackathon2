@@ -5,6 +5,7 @@ var mysql = require('mysql');
 var studentSQLModule = require('./sqlLib/studentSQLModule.js');
 var profSQLModule = require('./sqlLib/profSQLModule.js');
 var classSQLModule = require('./sqlLib/classSQLModule.js');
+var scoreSQLModule = require('./sqlLib/scoreSQLModule.js');
 var mysql = require('mysql');
 
 app.set('views', __dirname + '/view');
@@ -29,7 +30,10 @@ app.get('/test', function(req, res) {
   var profInfo = profSQLModule.getInfo(conn);
   var studentInfo = studentSQLModule.getInfo(conn);
   var classInfo = studentSQLModule.getInfo(conn);
-  res.send(studentInfo);
+  var scoreInfo = scoreSQLModule.getNot100Info(conn,1,1);
+
+
+  res.send(scoreInfo);
 })
 
 app.get('/', function(req, res) {
