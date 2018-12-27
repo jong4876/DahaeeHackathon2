@@ -43,10 +43,10 @@ function areaChart (data) {
     }
 
     var areaChartData = {
-      labels  : ['0~100', '100~200', '200~300', '300~400', '400~500', '500~600', '600~700', '700~800'],
+      labels  : ['0', '100', '200', '300', '400', '500', '600', '700'],
       datasets: [
         {
-          label               : 2017,
+          label               : '2017년',
           fillColor           : 'rgba(210, 214, 222, 1)',
           strokeColor         : 'rgba(210, 214, 222, 1)',
           pointColor          : 'rgba(210, 214, 222, 1)',
