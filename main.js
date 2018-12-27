@@ -30,7 +30,7 @@ app.get('/test', function(req, res) {
   var profInfo = profSQLModule.getInfo(conn);
   var classInfo = classSQLModule.getInfo(conn);
   var studentAVGInfo = studentSQLModule.getAVGInfo(conn);
-  var studentSWYearInfo = studentSQLModule.getSWYearInfo(conn, 17);
+  var studentSWYearInfo = studentSQLModule.getSWYearInfo(conn, 18);
 
   var scoreNot100Count = scoreSQLModule.getNot100Count(conn);  // 도넛
   var score100Count = scoreSQLModule.get100Count(conn);
@@ -106,8 +106,9 @@ app.get('/problemChart', function(req, res) {
 
   var data = new Array();
   for(var i=0; i<score100Count.length; i++)
-    data[i] = score100Count[i].cnt + "," + scoreNot100Count[i].cnt;
-
+    data[i] = score100Count[i].count + "," + scoreNot100Count[i].count;
+    
+  console.log(data);
   res.send(data);
 })
 
@@ -119,5 +120,5 @@ app.get('/select', function(req, res) {
 })
 
 app.listen(3000, function() {
-  console.log('Connected, 3001port!!');
+  console.log('Connected, 3000port!!');
 });
