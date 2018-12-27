@@ -30,16 +30,21 @@ app.get('/test', function(req, res) {
   var profInfo = profSQLModule.getInfo(conn);
   var classInfo = classSQLModule.getInfo(conn);
   var studentAVGInfo = studentSQLModule.getAVGInfo(conn);
-  var studentInfoUp20per = studentSQLModule.getInfoUp20per(conn); // 도넛
+  var studentSWYearInfo = studentSQLModule.getSWYearInfo(conn, 18);
 
-  var scoreNot100Count = scoreSQLModule.getNot100Count(conn);  // 100점 사람  4번
+  var scoreNot100Count = scoreSQLModule.getNot100Count(conn);  // 도넛
   var score100Count = scoreSQLModule.get100Count(conn);
 
-  res.send(score100Count);
+  res.send(studentSWYearInfo);
 })
 
 app.get('/', function(req, res) {
-  res.render('starter.ejs');
+
+  var allRanking = studentSQLModule.getSWYearInfo(conn, 18);
+
+  console.log(allRanking);
+
+  res.render('starter.ejs', {allRanking : allRanking});
 })
 
 app.get('/header', function(req, res) {
@@ -67,6 +72,7 @@ app.get('/scoreChart', function(req, res) {
 
   var data = new Array();
 
+  // 라디오버튼 선택 정보 들어와야함
   for(var i=0; i<Object.keys(studentInfo).length; i++)
     data[i] = studentInfo[i].SWContest17 + ","+ studentInfo[i].SWContest18;
 
@@ -80,26 +86,30 @@ app.get('/gradeChart', function(req, res) {
 
   for(var i=0; i<Object.keys(studentInfoUp20per).length; i++)
     data[i] = studentInfoUp20per[i].year + ","+ studentInfoUp20per[i].count;
-  console.log(data);
+
   res.send(data);
 })
 
 app.get('/majorChart', function(req, res) {
-  var mod = 100;
-  var score = new Array();
-  for(var i = 0; i<8; i++)
-    score[i] = parseInt(Math.random() * mod);
+  var studentAVGInfo = studentSQLModule.getAVGInfo(conn);
+  var data = new Array();
 
-  res.send(score);
+  for(var i=0; i<Object.keys(studentAVGInfo).length; i++)
+    data[i] = studentAVGInfo[i].Major + ","+ studentAVGInfo[i].AVG;
+
+  res.send(data);
 })
 
 app.get('/problemChart', function(req, res) {
-  var mod = 100;
-  var score = new Array();
-  for(var i = 0; i<8; i++)
-    score[i] = parseInt(Math.random() * mod);
+  var scoreNot100Count = scoreSQLModule.getNot100Count(conn);  // 100점 사람  4번
+  var score100Count = scoreSQLModule.get100Count(conn);
 
-  res.send(score);
+  var data = new Array();
+  for(var i=0; i<score100Count.length; i++)
+    data[i] = score100Count[i].count + "," + scoreNot100Count[i].count;
+    
+  console.log(data);
+  res.send(data);
 })
 
 app.get('/select', function(req, res) {
