@@ -101,11 +101,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
           <!-- /.col (LEFT) -->
           <div class="col-md-6 connectedSortable">
-            <!-- LINE CHART -->
-            <div class="box box-info nav-tabs-custom">
+            <!-- Bar chart -->
+            <div class="box box-primary nav-tabs-custom">
               <div class="box-header with-border nav-tabs">
+                <i class="fa fa-bar-chart-o"></i>
+
                 <h3 class="box-title">학과별 성적 그래프</h3>
-  
+
                 <div class="box-tools pull-right">
                   <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                   </button>
@@ -113,14 +115,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
               </div>
               <div class="box-body">
-                <div class="chart">
-                  <canvas id="lineChart" style="height:250px"></canvas>
-                </div>
+                <div id="bar-chart" style="height: 300px;"></div>
               </div>
-              <!-- /.box-body -->
+              <!-- /.box-body-->
             </div>
             <!-- /.box -->
-  
             <!-- BAR CHART -->
             <div class="box box-success nav-tabs-custom">
               <div class="box-header with-border nav-tabs">
@@ -358,10 +357,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<!-- FLOT CHARTS -->
+<script src="bower_components/Flot/jquery.flot.js"></script>
+<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+<script src="bower_components/Flot/jquery.flot.resize.js"></script>
+<!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+<script src="bower_components/Flot/jquery.flot.categories.js"></script>
 
 <!-- chart script -->
 <script src="components/js/areaChart.js"></script>
-<script src="components/js/lineChart.js"></script>
+<script src="components/js/flotBarChart.js"></script>
 <script src="components/js/pieChart.js"></script>
 <script src="components/js/barChart.js"></script>
 <!-- table script -->
@@ -401,7 +406,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       dataType : 'text',
       url : "/majorChart",
       success : function(data) {
-          lineChart(data);
+        flotBarChart(data);
       }
   })
 
@@ -414,7 +419,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       dataType : 'text',
       url : "/majorChart",
       success : function(data) {
-          lineChart(data);
+        flotBarChart(data);
       }
   })}, delay);
 </script>

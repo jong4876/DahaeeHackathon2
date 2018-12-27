@@ -7,7 +7,7 @@ function barChart (datas) {
     var barChartCanvas                   = $('#barChart').get(0).getContext('2d')
     var barChart                         = new Chart(barChartCanvas)
     var barChartData                     = {
-      labels  : ['문제1', '문제2', '문제3', '문제4', '문제5', '문제6', '문제7'],
+      labels  : ['문제1', '문제2', '문제3', '문제4', '문제5', '문제6', '문제7', '문제8'],
       datasets: [
         {
           label               : 'Electronics',
