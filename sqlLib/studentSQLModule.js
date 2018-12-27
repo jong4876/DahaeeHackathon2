@@ -66,7 +66,6 @@ module.exports.getInfoUp20per = function(conn) { // 상위 20퍼의 학생 추�
   return results;
 }
 module.exports.getAVGInfo = function(conn) { // 학과별 평균
-
   var sql = 'SELECT Major, avg(SWContest17) as AVG FROM student group by Major';
   var jsonTotalArray = new Array();
   var results = new Object();

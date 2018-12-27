@@ -32,10 +32,12 @@ app.get('/test', function(req, res) {
   var studentAVGInfo = studentSQLModule.getAVGInfo(conn);
   var studentSWYearInfo = studentSQLModule.getSWYearInfo(conn, 18);
 
-  var scoreNot100Count = scoreSQLModule.getNot100Count(conn);  // 도넛
+  var scoreNot100Count = scoreSQLModule.getNot100Info(conn,17,1);  // 도넛
   var score100Count = scoreSQLModule.get100Count(conn);
 
-  res.send(studentSWYearInfo);
+
+
+  res.send(scoreNot100Count);
 })
 
 app.get('/', function(req, res) {
