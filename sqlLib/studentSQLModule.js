@@ -64,8 +64,8 @@ module.exports.getInfoUp20per = function(conn) { // 상위 20퍼의 학생 추�
       console.log(err);
       return 'Internal Server Err';
     } else {
-      sql = 'select year, count(year) from (select * from student order by SWContest17 DESC LIMIT ?) as sub group by year';
-      var intCount = parseInt(count[0].count / 5);
+      sql = 'select year, count(year) as count from (select * from student order by SWContest17 DESC LIMIT ?) as sub group by year';
+      var intCount = 5; //parseInt(count[0].count / 5);
       console.log('intCount : ' +intCount);
       conn.query(sql,intCount, function(err, result, fields) {
         if (err) {
@@ -84,7 +84,8 @@ module.exports.getInfoUp20per = function(conn) { // 상위 20퍼의 학생 추�
   return results;
 }
 
-module.exports.getAVGInfo = function(conn) { // 2번
+module.exports.getAVGInfo = function(conn) { // 학과별 평균
+  
   var sql = 'SELECT Major, avg(SWContest17) as AVG FROM student group by Major';
   var jsonTotalArray = new Array();
   var results = new Object();
