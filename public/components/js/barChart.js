@@ -1,7 +1,9 @@
-$(function () {
+function barChart (datas) {
     //-------------
     //- BAR CHART -
     //-------------
+    var dataes = datas.match(/[0-9]{1,3}/g)
+
     var barChartCanvas                   = $('#barChart').get(0).getContext('2d')
     var barChart                         = new Chart(barChartCanvas)
     var barChartData                     = {
@@ -15,7 +17,7 @@ $(function () {
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40]
+          data                : dataes
         },
         {
           label               : 'Digital Goods',
@@ -25,7 +27,7 @@ $(function () {
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [28, 48, 40, 19, 86, 27, 90]
+          data                : dataes
         }
       ]
     }
@@ -60,4 +62,4 @@ $(function () {
 
     barChartOptions.datasetFill = false
     barChart.Bar(barChartData, barChartOptions)
-  });
+  };

@@ -1,4 +1,4 @@
-$(function () {
+function pieChart () {
     //-------------
     //- PIE CHART -
     //-------------
@@ -68,4 +68,4 @@ $(function () {
     //Create pie or douhnut chart
     // You can switch between pie and douhnut using the method below.
     pieChart.Doughnut(PieData, pieOptions)
-  });
+  };

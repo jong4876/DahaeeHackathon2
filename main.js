@@ -75,6 +75,42 @@ app.get('/index2', function(req, res) {
   res.render('index2.html');
 })
 
+app.get('/scoreChart', function(req, res) {
+  var mod = 100;
+  var score = new Array();
+  for(var i = 0; i<8; i++)
+    score[i] = parseInt(Math.random() * mod);
+
+  res.send(score);
+})
+
+app.get('/gradeChart', function(req, res) {
+  var mod = 100;
+  var score = new Array();
+  for(var i = 0; i<8; i++)
+    score[i] = parseInt(Math.random() * mod);
+
+  res.send(score);
+})
+
+app.get('/majorChart', function(req, res) {
+  var mod = 100;
+  var score = new Array();
+  for(var i = 0; i<8; i++)
+    score[i] = parseInt(Math.random() * mod);
+
+  res.send(score);
+})
+
+app.get('/problemChart', function(req, res) {
+  var mod = 100;
+  var score = new Array();
+  for(var i = 0; i<8; i++)
+    score[i] = parseInt(Math.random() * mod);
+
+  res.send(score);
+})
+
 app.listen(3000, function() {
   console.log('Connected, 3000port!!');
 });
