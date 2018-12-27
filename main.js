@@ -63,6 +63,22 @@ app.get('/footer', function(req, res) {
   res.render('include/footer.html');
 })
 
+app.get('/areachart', function(req, res) {
+  res.render('include/areachart.html');
+})
+
+app.get('/donutchart', function(req, res) {
+  res.render('include/donutchart.html');
+})
+
+app.get('/flotBarchart', function(req, res) {
+  res.render('include/flotBarchart.html');
+})
+
+app.get('/barchart', function(req, res) {
+  res.render('include/barchart.html');
+})
+
 app.get('/index', function(req, res) {
   res.render('index.html');
 })
