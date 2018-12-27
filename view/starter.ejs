@@ -75,7 +75,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="box-body">
                                   <div class="chart">
                                     <a href="#!" data-toggle="modal" data-target="#modal-dataselector" data-dismiss="modal">
-                                      <img src="dist/img/areachart.png" style="height: 139px; width: 349px;" width="349" height="139"></img>
+                                      <img src="dist/img/areachart.png" style="height: 139px; width: 349px;" width="349" height="139" onclick="chart('area')"></img>
                                     </a>
                                   </div>
                                 </div>
@@ -93,7 +93,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 <div class="box-body">
                                   <a href="#!" data-toggle="modal" data-target="#modal-dataselector" data-dismiss="modal">
-                                    <img src="dist/img/piechart.png" style="height: 184px; width: 369px;" width="369" height="184"></img>
+                                    <img src="dist/img/piechart.png" style="height: 184px; width: 369px;" width="369" height="184" onclick="chart('donut')"></img>
                                   </a>
                                 </div>
                                 <!-- /.box-body -->
@@ -114,7 +114,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="box-body">
                                   <div class="chart">
                                     <a href="#!" data-toggle="modal" data-target="#modal-dataselector" data-dismiss="modal">
-                                      <img src="dist/img/linechart.png" style="height: 139px; width: 349px;" width="349" height="139"></img>
+                                      <img src="dist/img/linechart.png" style="height: 139px; width: 349px;" width="349" height="139" onclick="chart('flotbar')"></img>
                                     </a>
                                   </div>
                                 </div>
@@ -133,7 +133,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="box-body">
                                   <div class="chart">
                                     <a href="#!" data-toggle="modal" data-target="#modal-dataselector" data-dismiss="modal">
-                                      <img src="dist/img/barchart.png" style="height: 128px; width: 349px;" width="349" height="128"></img>
+                                      <img src="dist/img/barchart.png" style="height: 128px; width: 349px;" width="349" height="128" onclick="chart('bar')"></img>
                                     </a>
                                   </div>
                                 </div>
@@ -154,10 +154,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 <!-- /.modal-dialog -->
             </div>
-  
-  
-  
-  
   
             <div class="modal fade" id="modal-dataselector">
                   <div class="modal-dialog modal-lg">
@@ -438,11 +434,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
       });
 </script>
 <script>
-  $(document).ready(function() {
-    $("#btn-area-chart").click(function(){
-      $("#target-chart").load("areachart")
-    }); 
-  });
+
+  function chart(arg) { localStorage.chart = arg; }
+    $('#modal-dataselector').on('hidden.bs.modal', function(){
+      alert(localStorage.chart);
+    });
 </script>
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
