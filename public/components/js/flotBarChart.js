@@ -3,22 +3,22 @@
      * BAR CHART
      * ---------
      */
-    var dataMAJOR = new Array();
-    var dataAVG = new Array();
+    var dataX = new Array();
+    var dataY = new Array();
 
     var datas = JSON.parse(data);
 
     for(var i=0; i<datas.length; i++) {
-      dataMAJOR[i] = datas[i].split(",")[0];
-      dataAVG[i] = datas[i].split(",")[1];
+      dataX[i] = datas[i].split(",")[0];
+      dataY[i] = datas[i].split(",")[1];
     }
 
     for(var i=0; i<datas.length; i++)
-      dataAVG[i] = dataAVG[i]*1;
+      dataY[i] = dataY[i]*1;
     
     var result = [];
     for(var i=0; i<datas.length; i++) {
-      result[i] = [dataMAJOR[i], dataAVG[i]];
+      result[i] = [dataX[i], dataY[i]];
     }
     
     var bar_data = {

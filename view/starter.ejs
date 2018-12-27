@@ -75,7 +75,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="box-body">
                                   <div class="chart">
                                     <a href="#!" data-toggle="modal" data-target="#modal-dataselector" data-dismiss="modal">
-                                      <img src="dist/img/areachart.png" style="height: 139px; width: 349px;" width="349" height="139" onclick="chart('area')"></img>
+                                      <img src="dist/img/areachart.png" style="height: 139px; width: 349px;" width="349" height="139" onclick="localStorage.chart = 'area'"></img>
                                     </a>
                                   </div>
                                 </div>
@@ -93,7 +93,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 <div class="box-body">
                                   <a href="#!" data-toggle="modal" data-target="#modal-dataselector" data-dismiss="modal">
-                                    <img src="dist/img/piechart.png" style="height: 184px; width: 369px;" width="369" height="184" onclick="chart('donut')"></img>
+                                    <img src="dist/img/piechart.png" style="height: 184px; width: 369px;" width="369" height="184" onclick="localStorage.chart = 'donut'"></img>
                                   </a>
                                 </div>
                                 <!-- /.box-body -->
@@ -103,18 +103,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                             <!-- /.col (LEFT) -->
                             <div class="col-md-6">
-                              <!-- LINE CHART -->
+                              <!-- Flot Bar CHART -->
                               <div class="box box-info">
                                 <div class="box-header with-border">
-                                  <h3 class="box-title">Line Chart</h3>
-  
-                                  <div class="box-tools pull-right">
-                                  </div>
+                                  <h3 class="box-title">Flot Bar Chart</h3>
                                 </div>
                                 <div class="box-body">
                                   <div class="chart">
                                     <a href="#!" data-toggle="modal" data-target="#modal-dataselector" data-dismiss="modal">
-                                      <img src="dist/img/linechart.png" style="height: 139px; width: 349px;" width="349" height="139" onclick="chart('flotbar')"></img>
+                                      <img src="dist/img/flotbarchart.png" style="height: 139px; width: 349px;" width="349" height="139" onclick="localStorage.chart = 'flotbar'"></img>
                                     </a>
                                   </div>
                                 </div>
@@ -133,7 +130,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="box-body">
                                   <div class="chart">
                                     <a href="#!" data-toggle="modal" data-target="#modal-dataselector" data-dismiss="modal">
-                                      <img src="dist/img/barchart.png" style="height: 128px; width: 349px;" width="349" height="128" onclick="chart('bar')"></img>
+                                      <img src="dist/img/barchart.png" style="height: 128px; width: 349px;" width="349" height="128" onclick="localStorage.chart = 'bar'"></img>
                                     </a>
                                   </div>
                                 </div>
@@ -199,7 +196,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                           </div>
                         </div>
                         <div class="modal-footer">
-                            <button id="btn-bar-chart" type="button" class="btn btn-default" data-dismiss="modal">제출</button>
+                            <button id="btn-area-chart" type="button" class="btn btn-default" data-dismiss="modal">제출</button>
                         </div>
                       </div>
                     </div>
@@ -434,11 +431,68 @@ scratch. This page gets rid of all links and provides the needed markup only.
       });
 </script>
 <script>
+  $(document).ready(function() {
+    $("#btn-area-chart").click(function(){
+      console.log(localStorage.chart);
+      if(localStorage.chart == 'area') {
+        $("#target-chart").load("areachart")
 
-  function chart(arg) { localStorage.chart = arg; }
-    $('#modal-dataselector').on('hidden.bs.modal', function(){
-      alert(localStorage.chart);
-    });
+          $.ajax({
+          type : "get",
+          //dataType: "json"
+          data: {'id':'admin'},
+          dataType : 'text',
+
+          url : "/scoreChart",
+          success : function(data) {
+              areaChart(data);
+          }
+        })
+      } else if(localStorage.chart == 'flotbar') {
+        $("#target-chart").load("flotBarchart")
+
+          $.ajax({
+          type : "get",
+          //dataType: "json"
+          data: {'id':'admin'},
+          dataType : 'text',
+
+          url : "/majorChart",
+          success : function(data) {
+              flotBarChart(data);
+          }
+        })
+      } else if(localStorage.chart == 'donut') {
+        $("#target-chart").load("donutchart")
+
+          $.ajax({
+          type : "get",
+          //dataType: "json"
+          data: {'id':'admin'},
+          dataType : 'text',
+
+          url : "/gradeChart",
+          success : function(data) {
+            flotDonutChart(data);
+          }
+        })
+      } else if(localStorage.chart == 'bar') {
+        $("#target-chart").load("barchart")
+
+          $.ajax({
+          type : "get",
+          //dataType: "json"
+          data: {'id':'admin'},
+          dataType : 'text',
+
+          url : "/problemChart",
+          success : function(data) {
+            barChart(data);
+          }
+        })
+      }
+    }); 
+  });
 </script>
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>

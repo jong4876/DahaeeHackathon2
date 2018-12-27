@@ -92,7 +92,6 @@ app.get('/scoreChart', function(req, res) {
 
   var data = new Array();
 
-  // 라디오버튼 선택 정보 들어와야함
   for (var i = 0; i < Object.keys(studentInfo).length; i++)
     data[i] = studentInfo[i].SWContest17 + "," + studentInfo[i].SWContest18;
 
@@ -128,15 +127,12 @@ app.get('/problemChart', function(req, res) {
   for (var i = 0; i < score100Count.length; i++)
     data[i] = score100Count[i].count + "," + scoreNot100Count[i].count;
 
-  console.log(data);
   res.send(data);
 })
 
 app.get('/select', function(req, res) {
   var scoreNot100Info = scoreSQLModule.getNot100Info(conn, 17, 1); // 100점 사람  4번
   var score100Info = scoreSQLModule.get100Info(conn, 17, 1);
-
-  console.log(scoreNot100Info);
 
   res.render('select.ejs', {
     score100Info: score100Info,
