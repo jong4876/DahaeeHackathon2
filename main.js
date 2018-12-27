@@ -32,10 +32,10 @@ app.get('/test', function(req, res) {
   var studentAVGInfo = studentSQLModule.getAVGInfo(conn);
   var studentInfoUp20per = studentSQLModule.getInfoUp20per(conn); // 도넛
 
-  var scoreNot100Info = scoreSQLModule.getNot100Info(conn,1,1);  // 100점 사람  4번
-  var score100Info = scoreSQLModule.get100Info(conn,1,1);
+  var scoreNot100Count = scoreSQLModule.getNot100Count(conn);  // 100점 사람  4번
+  var score100Count = scoreSQLModule.get100Count(conn);
 
-  res.send(studentInfoUp20per);
+  res.send(score100Count);
 })
 
 app.get('/', function(req, res) {
@@ -75,7 +75,7 @@ app.get('/scoreChart', function(req, res) {
 
 app.get('/gradeChart', function(req, res) {
   var studentInfoUp20per = studentSQLModule.getInfoUp20per(conn);
-  
+
   var data = new Array();
 
   for(var i=0; i<Object.keys(studentInfoUp20per).length; i++)
@@ -95,12 +95,14 @@ app.get('/majorChart', function(req, res) {
 })
 
 app.get('/problemChart', function(req, res) {
-  var mod = 100;
-  var score = new Array();
-  for(var i = 0; i<8; i++)
-    score[i] = parseInt(Math.random() * mod);
+  var scoreNot100Count = scoreSQLModule.getNot100Count(conn);  // 100점 사람  4번
+  var score100Count = scoreSQLModule.get100Count(conn);
 
-  res.send(score);
+  var data = new Array();
+  for(var i=0; i<score100Count.length; i++)
+    data[i] = score100Count[i].cnt + "," + scoreNot100Count[i].cnt;
+
+  res.send(data);
 })
 
 app.get('/select', function(req, res) {
@@ -110,6 +112,6 @@ app.get('/select', function(req, res) {
   res.render('select.ejs', {score100Info: score100Info, scoreNot100Info: scoreNot100Info});
 })
 
-app.listen(3000, function() {
-  console.log('Connected, 3000port!!');
+app.listen(3001, function() {
+  console.log('Connected, 3001port!!');
 });

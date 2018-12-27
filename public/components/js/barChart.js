@@ -1,13 +1,25 @@
-function barChart (datas) {
+function barChart (data) {
     //-------------
     //- BAR CHART -
     //-------------
-    var dataes = datas.match(/[0-9]{1,3}/g)
+    
+    var datas = JSON.parse(data);
+    var data1 = new Array();
+    var data2 = new Array();
+    var listTag = new Array();
+
+    for(var i = 0; i<datas.length; i++){
+      data1[i] = datas[i].split(",")[0];
+      data2[i] = datas[i].split(",")[1];
+      listTag[i] = "문제" + (i+1);
+    }
+    
+
 
     var barChartCanvas                   = $('#barChart').get(0).getContext('2d')
     var barChart                         = new Chart(barChartCanvas)
     var barChartData                     = {
-      labels  : ['문제1', '문제2', '문제3', '문제4', '문제5', '문제6', '문제7', '문제8'],
+      labels  : listTag,
       datasets: [
         {
           label               : 'Electronics',
@@ -17,7 +29,7 @@ function barChart (datas) {
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : dataes
+          data                : data1
         },
         {
           label               : 'Digital Goods',
@@ -27,7 +39,7 @@ function barChart (datas) {
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : dataes
+          data                : data2
         }
       ]
     }
