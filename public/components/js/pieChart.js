@@ -1,46 +1,50 @@
-function pieChart () {
+function pieChart (data) {
     //-------------
     //- PIE CHART -
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
     var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
     var pieChart       = new Chart(pieChartCanvas)
+
+    var dataYear = new Array();
+    var dataCount = new Array();
+
+    var datas = JSON.parse(data);
+
+    for(var i=0; i<datas.length; i++) {
+      dataYear[i] = datas[i].split(",")[0];
+      dataCount[i] = datas[i].split(",")[1];
+    }
+
+    for(var i=0; i<datas.length; i++) {
+      dataYear[i] = dataYear[i]*1;
+      dataCount[i] = dataCount[i]*1;
+    }
+    console.log(dataYear + dataCount)
     var PieData        = [
       {
-        value    : 700,
+        value    : dataCount[0],
         color    : '#f56954',
         highlight: '#f56954',
-        label    : 'Chrome'
+        label    : '1학년'
       },
       {
-        value    : 500,
+        value    : dataCount[1],
         color    : '#00a65a',
         highlight: '#00a65a',
-        label    : 'IE'
+        label    : '2학년'
       },
       {
-        value    : 400,
+        value    : dataCount[2],
         color    : '#f39c12',
         highlight: '#f39c12',
-        label    : 'FireFox'
+        label    : '3학년'
       },
       {
-        value    : 600,
+        value    : dataCount[3],
         color    : '#00c0ef',
         highlight: '#00c0ef',
-        label    : 'Safari'
-      },
-      {
-        value    : 300,
-        color    : '#3c8dbc',
-        highlight: '#3c8dbc',
-        label    : 'Opera'
-      },
-      {
-        value    : 100,
-        color    : '#d2d6de',
-        highlight: '#d2d6de',
-        label    : 'Navigator'
+        label    : '4학년'
       }
     ]
     var pieOptions     = {

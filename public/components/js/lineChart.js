@@ -8,7 +8,7 @@ function lineChart (datas) {
     var lineChart                = new Chart(lineChartCanvas)
 
     var lineChartData = {
-      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels  : ['컴퓨터공학', '소프트웨어', '지능기전', '정보보호', '창의소프트웨어', '데이터사이언스', '디지털컨텐츠'],
       datasets: [
         {
           label               : 'Electronics',
