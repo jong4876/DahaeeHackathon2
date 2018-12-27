@@ -111,6 +111,10 @@ app.get('/problemChart', function(req, res) {
   res.send(score);
 })
 
-app.listen(3000, function() {
+app.get('/select', function(req, res) {
+  res.render('select.ejs');
+})
+
+app.listen(3001, function() {
   console.log('Connected, 3000port!!');
 });
