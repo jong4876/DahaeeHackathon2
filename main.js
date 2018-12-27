@@ -6,6 +6,7 @@ var studentSQLModule = require('./sqlLib/studentSQLModule.js');
 var profSQLModule = require('./sqlLib/profSQLModule.js');
 var classSQLModule = require('./sqlLib/classSQLModule.js');
 var scoreSQLModule = require('./sqlLib/scoreSQLModule.js');
+var dynamicSQLModule = require('./sqlLib/dynamicSQLModule.js');
 var mysql = require('mysql');
 
 app.set('views', __dirname + '/view');
@@ -50,6 +51,18 @@ app.get('/', function(req, res) {
     allRanking: allRanking
   });
 })
+
+app.post('/receiver', function(req, res) {
+  var allRanking = studentSQLModule.getSWYearInfo(conn, 18);
+  var avgObj = dynamicSQLModule.getDynamicAVGInfoByYearMajor(conn, req.body.year, req.body.grade, req.body.major);
+
+  console.log(avgObj);
+
+  res.render('starter.ejs', {
+    allRanking: allRanking, avgObj: avgObj
+  });
+})
+
 
 app.get('/header', function(req, res) {
   res.render('include/header.html');
