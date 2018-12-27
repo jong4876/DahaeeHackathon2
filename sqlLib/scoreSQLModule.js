@@ -19,7 +19,7 @@ module.exports.getInfo = function(conn, contestID) {
 }
 
 module.exports.get100Count = function(conn, ContestID, ProblemNum) { //  ContestID, ProblemNum 백점인 사람 수
-  var sql = 'select ProblemNum, count(*) from score group by ProblemNum';
+  var sql = 'select ProblemNum, count(*) as cnt from score group by ProblemNum';
   var results = new Object();
   conn.query(sql, [ContestID, ProblemNum], function(err, result, fields) {
     if (err) {
@@ -36,7 +36,7 @@ module.exports.get100Count = function(conn, ContestID, ProblemNum) { //  Contest
 }
 
 module.exports.getNot100Count = function(conn, ContestID, ProblemNum) { //  ContestID, ProblemNum 백점인 사람 수
-  var sql = 'select ProblemNum, count(*) from score where Score != 100 group by ProblemNum';
+  var sql = 'select ProblemNum, count(*) as cnt from score where Score != 100 group by ProblemNum';
   var results = new Object();
   conn.query(sql, [ContestID, ProblemNum], function(err, result, fields) {
     if (err) {
