@@ -40,11 +40,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition skin-red sidebar-mini">
 <div class="wrapper">
 
-  <header class="main-header"></header>
+  <header class="main-header" style="position: fixed; width: 100%;"></header>
   <aside class="main-sidebar"></aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper"  style="margin-top: 50px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -299,12 +299,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                   </div>
                 </div>
-                <div class="box-body">
-                  <div class="chart">
-                    <canvas id="areaChart" style="height:250px"></canvas>
-                  </div>
+              </div>
+              <div class="box-body">
+                <div class="chart">
+                  <canvas id="areaChart" style="height:250px"></canvas>
                 </div>
-                <!-- /.box-body -->
               </div>
 
 
@@ -338,6 +337,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- DONUT CHART -->
             <div class="box box-danger nav-tabs-custom">
               <div class="box-header with-border nav-tabs">
+                <i class="fa fa-bar-chart-o"></i>
+
                 <h3 class="box-title">성적 상위 10% 분포</h3>
 
                 <div class="box-tools pull-right">
@@ -347,18 +348,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
               </div>
               <div class="box-body">
-                <canvas id="pieChart" style="height:250px"></canvas>
+                <div id="donut-chart" style="height: 300px;"></div>
               </div>
-              <!-- /.box-body -->
+              <!-- /.box-body-->
             </div>
             <!-- /.box -->
 
           </div>
           <!-- /.col (LEFT) -->
           <div class="col-md-6 connectedSortable">
-            <!-- LINE CHART -->
-            <div class="box box-info nav-tabs-custom">
+            <!-- Bar chart -->
+            <div class="box box-primary nav-tabs-custom">
               <div class="box-header with-border nav-tabs">
+                <i class="fa fa-bar-chart-o"></i>
+
                 <h3 class="box-title">학과별 성적 그래프</h3>
 
                 <div class="box-tools pull-right">
@@ -368,11 +371,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
               </div>
               <div class="box-body">
-                <div class="chart">
-                  <canvas id="lineChart" style="height:250px"></canvas>
-                </div>
+                <div id="bar-chart" style="height: 300px;"></div>
               </div>
-              <!-- /.box-body -->
+              <!-- /.box-body-->
             </div>
             <!-- /.box -->
 
@@ -411,7 +412,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <small>2018</small>
         </h1>
         <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> SW경시대회</a></li>
+          <li><a href="/"><i class="fa fa-dashboard"></i> SW경시대회</a></li>
           <li class="active">전체순위</li>
         </ol>
       </section>
@@ -437,76 +438,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>14011000</td>
-                    <td>이동욱</td>
-                    <td>컴퓨터공학과</td>
-                    <td>2</td>
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>14011001</td>
-                    <td>김태우</td>
-                    <td>컴퓨터공학과</td>
-                    <td>4</td>
-                    <td>800</td>
-                  </tr>
-                  <tr>
-                    <td>14011003</td>
-                    <td>안종희</td>
-                    <td>컴퓨터공학과</td>
-                    <td>3</td>
-                    <td>800</td>
-                  </tr>
-                  <tr>
-                    <td>14011019</td>
-                    <td>배경환</td>
-                    <td>컴퓨터공학과</td>
-                    <td>3</td>
-                    <td>600</td>
-                  </tr>
-                  <tr>
-                    <td>14011021</td>
-                    <td>박희준</td>
-                    <td>컴퓨터공학과</td>
-                    <td>3</td>
-                    <td>400</td>
-                  </tr>
-                  <tr>
-                    <td>14011022</td>
-                    <td>김오성</td>
-                    <td>컴퓨터공학과</td>
-                    <td>4</td>
-                    <td>500</td>
-                  </tr>
-                  <tr>
-                    <td>14011049</td>
-                    <td>강은기</td>
-                    <td>컴퓨터공학과</td>
-                    <td>3</td>
-                    <td>700</td>
-                  </tr>
-                  <tr>
-                    <td>14011049</td>
-                    <td>강은기</td>
-                    <td>컴퓨터공학과</td>
-                    <td>3</td>
-                    <td>700</td>
-                  </tr>
-                  <tr>
-                    <td>14011049</td>
-                    <td>강은기</td>
-                    <td>컴퓨터공학과</td>
-                    <td>3</td>
-                    <td>700</td>
-                  </tr>
-                  <tr>
-                    <td>14011021</td>
-                    <td>박희준</td>
-                    <td>컴퓨터공학과</td>
-                    <td>3</td>
-                    <td>400</td>
-                  </tr>
+                  <% for(var i = 0; i < allRanking.length; i++) { %>
+                    <tr>
+                      <td><%- allRanking[i].ID %></td>
+                      <td><%- allRanking[i].Name %></td>
+                      <td><%- allRanking[i].Major %></td>
+                      <td><%- allRanking[i].Year %></td>
+                      <td><%- allRanking[i].SWContest18 %></td>
+                    </tr>
+                  <% } %>
                   </tfoot>
                 </table>
               </div>
@@ -613,11 +553,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<!-- FLOT CHARTS -->
+<script src="bower_components/Flot/jquery.flot.js"></script>
+<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+<script src="bower_components/Flot/jquery.flot.resize.js"></script>
+<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+<script src="bower_components/Flot/jquery.flot.pie.js"></script>
+<!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+<script src="bower_components/Flot/jquery.flot.categories.js"></script>
 
 <!-- chart script -->
 <script src="components/js/areaChart.js"></script>
-<script src="components/js/lineChart.js"></script>
-<script src="components/js/pieChart.js"></script>
+<script src="components/js/flotBarChart.js"></script>
+<script src="components/js/flotDonutChart.js"></script>
 <script src="components/js/barChart.js"></script>
 <!-- table script -->
 <script src="components/js/dataTable.js"></script>
@@ -656,22 +604,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       dataType : 'text',
       url : "/majorChart",
       success : function(data) {
-          lineChart(data);
+        flotBarChart(data);
       }
   })
-
-  var delay = 10000;
-  setInterval(function(){
-    $.ajax({
-      type : "get",
-      //dataType: "json"
-      data: {'id':'admin'},
-      dataType : 'text',
-      url : "/majorChart",
-      success : function(data) {
-          lineChart(data);
-      }
-  })}, delay);
 </script>
 <script>
   $.ajax({
@@ -681,7 +616,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     dataType : 'text',
     url : "/gradeChart",
     success : function(data) {
-      pieChart(data);
+      flotDonutChart(data);
     }
   })
 

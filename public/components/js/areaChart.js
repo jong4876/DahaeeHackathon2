@@ -12,60 +12,47 @@ function areaChart (data) {
     // This will get the first returned node in the jQuery collection.
     var areaChart       = new Chart(areaChartCanvas)
 
-    var result17 = new Array();
-    var result18 = new Array();
-    var data17 = new Array();
-    var data18 = new Array();
+    var result = new Array(new Array(), new Array());
+    var dataArray = new Array(new Array(), new Array());
 
     var datas = JSON.parse(data);
 
-    for(var i=0; i<8; i++) {
-      result17[i] = 0;
-      result18[i] = 0;
+    for(var i=0; i<datas[0].split(",").length; i++){
+      for(var j=0; j<8; j++) {
+        result[i][j] = 0;
+      }
     }
 
-    for(var i=0; i<datas.length; i++) {
-      data17[i] = datas[i].split(",")[0];
-      data18[i] = datas[i].split(",")[1];
+    for(var i=0; i<datas[0].split(",").length; i++){
+      for(var j=0; j<datas.length; j++) {
+        dataArray[i][j] = datas[j].split(",")[i];
+        var temp = dataArray[i][j]*1;
+        if(temp == 800)
+          temp -=1;
+          result[i][parseInt(temp / 100)]++;
+      }
     }
 
-    for(var i=0; i<datas.length; i++) {
+    var color = new Array('rgba(210, 214, 222, 1)', 'rgba(135,178,205,1)', 'rgba(60,141,188,1)');
+    var color2 = new Array('#3c8dbc', '#0073b7', '#00c0ef');
 
-      var temp = data17[i]*1;
-      if(temp == 800)
-        temp -=1;
-      result17[parseInt(temp / 100)]++;
-
-      temp = data18[i]*1;
-      if(temp == 800)
-        temp -=1;
-      result18[parseInt(temp / 100)]++;
-    }
+    var areaData = [];
+    for(var i=0; i<datas[0].split(",").length; i++)
+      areaData[i] = 
+      { 
+        label               : '2017년',
+        fillColor           : color[i],
+        strokeColor         : color[i],
+        pointColor          : color[i],
+        pointStrokeColor    : color2[i],
+        pointHighlightFill  : '#fff',
+        pointHighlightStroke: color[i],
+        data                : result[i]
+      };
 
     var areaChartData = {
       labels  : ['0', '100', '200', '300', '400', '500', '600', '700'],
-      datasets: [
-        {
-          label               : '2017년',
-          fillColor           : 'rgba(210, 214, 222, 1)',
-          strokeColor         : 'rgba(210, 214, 222, 1)',
-          pointColor          : 'rgba(210, 214, 222, 1)',
-          pointStrokeColor    : '#c1c7d1',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : result17
-        },
-        {
-          label               : '2018년',
-          fillColor           : 'rgba(60,141,188,0.9)',
-          strokeColor         : 'rgba(60,141,188,0.8)',
-          pointColor          : '#3b8bba',
-          pointStrokeColor    : 'rgba(60,141,188,1)',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : result18
-        }
-      ]
+      datasets: areaData
     }
 
     var areaChartOptions = {
