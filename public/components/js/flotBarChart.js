@@ -6,7 +6,12 @@
     var dataX = new Array();
     var dataY = new Array();
 
+    data = data.toString();
+    console.log(data);
+
     var datas = JSON.parse(data);
+    
+    console.log(datas);
 
     for(var i=0; i<datas.length; i++) {
       dataX[i] = datas[i].split(",")[0];

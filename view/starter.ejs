@@ -190,16 +190,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                <input type="radio" name="major" value="정보보호학과"> 정보보호학과</input>&nbsp;&nbsp;
                                <input type="radio" name="major" value="지능기전공학부"> 지능기전공학부</input>&nbsp;&nbsp;
                                <input type="radio" name="major" value="데이터사이언스학과"> 데이터사이언스학과</input><br><br>
-                               전공 여부&nbsp;&nbsp;
-                               <input type="radio" name="specified" value="0"> 비전공자</input>&nbsp;&nbsp;
-                               <input type="radio" name="specified" value="1"> 전공자</input><br><br>
                              </div>
 
                            </div>
                        </div>
                      </div>
                      <div class="modal-footer">
-                         <button id="btn-bar-chart" type="button" class="btn btn-default" data-dismiss="modal">제출</button>
+                         <button id="btn-area-chart" type="button" class="btn btn-default" data-dismiss="modal">제출</button>
                         </div>
                       </div>
                     </div>
@@ -436,7 +433,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script>
   $(document).ready(function() {
     $("#btn-area-chart").click(function(){
-      console.log(localStorage.chart);
       if(localStorage.chart == 'area') {
         $("#target-chart").load("areachart")
 
@@ -599,11 +595,11 @@ function submission(){
     datas['specified'] = $("input[name=specified]").attr("value");
 
     $.ajax({
-       type: "POST",
+       type: "get",
        url: "/receiver",
-       data: datas,
-       success: function(result) {
-         console.log(result);
+       data: {"year" : datas['year'], "major" : datas['major']},
+       success: function(data) {
+          flotBarChart(data);
           self.close();
        },
        error: function(jqXHR, textStatus, errorThrown) {
